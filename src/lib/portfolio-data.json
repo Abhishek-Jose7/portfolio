@@ -1,0 +1,397 @@
+{
+  "personal": {
+    "name": "Abhishek Jose",
+    "title": "Full Stack Developer",
+    "tagline": "Building scalable web applications with modern technologies",
+    "bio": "I'm a passionate full-stack developer with 4+ years of experience crafting elegant solutions to complex problems. I specialize in React, Next.js, Node.js, and cloud architectures. I love turning ideas into reality through clean code and thoughtful design.",
+    "location": "San Francisco, CA",
+    "email": "abhishek.jose@example.com",
+    "phone": "+1 (555) 123-4567",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    "resumeUrl": "/resume.pdf"
+  },
+  "social": {
+    "github": "https://github.com/abhishekjose",
+    "linkedin": "https://linkedin.com/in/abhishekjose",
+    "instagram": "https://instagram.com/abhishekjose",
+    "twitter": "https://twitter.com/abhishekjose"
+  },
+  "skills": {
+    "frontend": [
+      { "name": "React", "level": 95, "years": 4 },
+      { "name": "Next.js", "level": 90, "years": 3 },
+      { "name": "TypeScript", "level": 88, "years": 3 },
+      { "name": "Tailwind CSS", "level": 92, "years": 3 },
+      { "name": "Vue.js", "level": 75, "years": 2 }
+    ],
+    "backend": [
+      { "name": "Node.js", "level": 90, "years": 4 },
+      { "name": "Python", "level": 85, "years": 3 },
+      { "name": "PostgreSQL", "level": 82, "years": 3 },
+      { "name": "MongoDB", "level": 80, "years": 3 },
+      { "name": "GraphQL", "level": 78, "years": 2 }
+    ],
+    "devops": [
+      { "name": "Docker", "level": 85, "years": 3 },
+      { "name": "AWS", "level": 80, "years": 3 },
+      { "name": "CI/CD", "level": 82, "years": 3 },
+      { "name": "Kubernetes", "level": 70, "years": 2 }
+    ],
+    "tools": [
+      { "name": "Git", "level": 95, "years": 5 },
+      { "name": "VS Code", "level": 98, "years": 5 },
+      { "name": "Figma", "level": 75, "years": 2 },
+      { "name": "Postman", "level": 85, "years": 4 }
+    ]
+  },
+  "projects": [
+    {
+      "id": "1",
+      "title": "AI SaaS Platform",
+      "description": "Enterprise-grade AI platform serving 50,000+ users with real-time collaboration features",
+      "longDescription": "Built a comprehensive AI-powered SaaS platform from the ground up that enables teams to collaborate on machine learning projects. The platform handles real-time updates, complex data visualizations, and supports multiple AI model integrations.",
+      "category": "AI/ML",
+      "tags": ["Next.js", "Python", "TensorFlow", "WebSocket", "PostgreSQL"],
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop",
+      "metrics": {
+        "users": "50,000+",
+        "uptime": "99.9%",
+        "performance": "40ms response time"
+      },
+      "problem": "Companies needed a unified platform to manage AI workflows without vendor lock-in",
+      "approach": "Microservices architecture with real-time sync, progressive enhancement, and edge computing",
+      "challenges": "Handling concurrent model training, optimizing WebSocket connections, managing GPU resources",
+      "results": "Reduced AI workflow time by 60%, achieved 99.9% uptime, scaled to 50K users in 6 months",
+      "github": "https://github.com/abhishekjose/ai-saas",
+      "demo": "https://ai-platform-demo.com",
+      "featured": true,
+      "year": 2024
+    },
+    {
+      "id": "2",
+      "title": "Real-Time Analytics Dashboard",
+      "description": "High-performance analytics dashboard processing 1M+ events per second",
+      "longDescription": "Developed a real-time analytics platform capable of ingesting, processing, and visualizing millions of events per second. Features include custom query builder, interactive visualizations, and automated alerting.",
+      "category": "Data",
+      "tags": ["React", "D3.js", "Apache Kafka", "Redis", "ClickHouse"],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
+      "metrics": {
+        "throughput": "1M+ events/sec",
+        "latency": "< 100ms",
+        "cost": "40% reduction"
+      },
+      "problem": "Marketing teams needed instant insights from massive data streams",
+      "approach": "Event-driven architecture with streaming pipelines and column-oriented database",
+      "challenges": "Real-time aggregations, memory optimization, handling data skew",
+      "results": "Enabled real-time decision making, reduced infrastructure costs by 40%, 10x faster queries",
+      "github": "https://github.com/abhishekjose/analytics",
+      "demo": "https://analytics-demo.com",
+      "featured": true,
+      "year": 2023
+    },
+    {
+      "id": "3",
+      "title": "E-Commerce Marketplace",
+      "description": "Multi-vendor marketplace with 10K+ sellers and $5M+ in transactions",
+      "longDescription": "Built a scalable marketplace platform connecting buyers and sellers with advanced search, recommendation engine, secure payments, and comprehensive seller tools.",
+      "category": "E-Commerce",
+      "tags": ["Next.js", "Node.js", "Stripe", "Elasticsearch", "AWS"],
+      "image": "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=500&fit=crop",
+      "metrics": {
+        "sellers": "10,000+",
+        "transactions": "$5M+",
+        "conversion": "3.2%"
+      },
+      "problem": "Small businesses struggled with expensive marketplace fees and complex setup",
+      "approach": "Modular architecture with AI-powered recommendations and automated onboarding",
+      "challenges": "Payment reconciliation, fraud prevention, search relevance at scale",
+      "results": "Onboarded 10K sellers in 8 months, processed $5M+ transactions, 3.2% conversion rate",
+      "github": "https://github.com/abhishekjose/marketplace",
+      "demo": "https://marketplace-demo.com",
+      "featured": true,
+      "year": 2023
+    },
+    {
+      "id": "4",
+      "title": "Healthcare Management System",
+      "description": "HIPAA-compliant patient management system serving 200+ clinics",
+      "longDescription": "Created a comprehensive healthcare management platform with patient records, appointment scheduling, telemedicine, billing, and analytics—all HIPAA compliant.",
+      "category": "Healthcare",
+      "tags": ["React", "Node.js", "MongoDB", "WebRTC", "Azure"],
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop",
+      "metrics": {
+        "clinics": "200+",
+        "patients": "50,000+",
+        "satisfaction": "4.8/5"
+      },
+      "problem": "Clinics needed affordable, compliant software with telemedicine capabilities",
+      "approach": "HIPAA-compliant cloud architecture with end-to-end encryption and audit logs",
+      "challenges": "HIPAA compliance, video call quality, offline support, data security",
+      "results": "Served 200+ clinics, 50K+ patients, 4.8/5 satisfaction, zero security breaches",
+      "demo": "https://healthcare-demo.com",
+      "featured": false,
+      "year": 2022
+    },
+    {
+      "id": "5",
+      "title": "Social Media Analytics Tool",
+      "description": "Social media monitoring platform analyzing 10M+ posts daily",
+      "longDescription": "Developed a comprehensive social listening platform that tracks brand mentions, sentiment analysis, competitor analysis, and trend detection across major social platforms.",
+      "category": "Analytics",
+      "tags": ["Python", "React", "NLP", "PostgreSQL", "Redis"],
+      "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=500&fit=crop",
+      "metrics": {
+        "posts": "10M+ daily",
+        "accuracy": "92%",
+        "languages": "25+"
+      },
+      "problem": "Brands needed real-time insights into social media conversations",
+      "approach": "NLP pipelines with sentiment analysis, entity recognition, and trend detection",
+      "challenges": "Multi-language support, real-time processing, API rate limits",
+      "results": "92% sentiment accuracy, 25+ languages, helped brands respond 5x faster",
+      "github": "https://github.com/abhishekjose/social-analytics",
+      "featured": false,
+      "year": 2022
+    },
+    {
+      "id": "6",
+      "title": "Developer Portfolio Builder",
+      "description": "No-code portfolio builder used by 5,000+ developers",
+      "longDescription": "Built a platform that lets developers create stunning portfolios without writing code. Features include drag-and-drop editor, GitHub integration, custom domains, and analytics.",
+      "category": "Developer Tools",
+      "tags": ["Next.js", "Tailwind", "Prisma", "Vercel", "GitHub API"],
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
+      "metrics": {
+        "users": "5,000+",
+        "portfolios": "8,000+",
+        "satisfaction": "4.7/5"
+      },
+      "problem": "Developers wanted beautiful portfolios but lacked design skills",
+      "approach": "Template-based system with smart GitHub integration and one-click deploy",
+      "challenges": "Template customization, GitHub API rate limits, performance optimization",
+      "results": "5K+ users, 8K+ portfolios created, 4.7/5 rating, 80% completed in under 30 min",
+      "github": "https://github.com/abhishekjose/portfolio-builder",
+      "demo": "https://portfolio-builder-demo.com",
+      "featured": false,
+      "year": 2024
+    }
+  ],
+  "experience": [
+    {
+      "id": "1",
+      "company": "TechCorp Inc.",
+      "position": "Senior Full Stack Developer",
+      "location": "San Francisco, CA",
+      "type": "Full-time",
+      "startDate": "2022-01",
+      "endDate": null,
+      "current": true,
+      "description": "Leading development of AI-powered enterprise applications serving millions of users",
+      "achievements": [
+        "Architected and built AI SaaS platform from scratch, growing to 50,000+ users",
+        "Reduced API response times by 60% through database optimization and caching strategies",
+        "Mentored 5 junior developers, established code review practices and technical standards",
+        "Implemented CI/CD pipelines reducing deployment time from 2 hours to 10 minutes"
+      ],
+      "technologies": ["React", "Next.js", "Node.js", "PostgreSQL", "AWS", "Docker"]
+    },
+    {
+      "id": "2",
+      "company": "DataFlow Solutions",
+      "position": "Full Stack Developer",
+      "location": "Remote",
+      "type": "Full-time",
+      "startDate": "2020-06",
+      "endDate": "2021-12",
+      "current": false,
+      "description": "Built real-time analytics platforms and data visualization tools",
+      "achievements": [
+        "Developed analytics dashboard processing 1M+ events/second with sub-100ms latency",
+        "Reduced infrastructure costs by 40% by optimizing data pipelines and storage",
+        "Built custom visualization library used across 10+ internal products",
+        "Improved system reliability from 95% to 99.9% uptime through monitoring and alerting"
+      ],
+      "technologies": ["React", "Python", "Kafka", "Redis", "ClickHouse", "D3.js"]
+    },
+    {
+      "id": "3",
+      "company": "StartupHub",
+      "position": "Junior Full Stack Developer",
+      "location": "Austin, TX",
+      "type": "Full-time",
+      "startDate": "2019-01",
+      "endDate": "2020-05",
+      "current": false,
+      "description": "Developed web applications and APIs for early-stage startups",
+      "achievements": [
+        "Built 5+ MVPs for startup clients from concept to production launch",
+        "Implemented responsive designs increasing mobile conversions by 45%",
+        "Created reusable component library reducing development time by 30%",
+        "Collaborated with designers and product managers in agile environment"
+      ],
+      "technologies": ["React", "Node.js", "MongoDB", "Express", "Heroku"]
+    }
+  ],
+  "education": [
+    {
+      "id": "1",
+      "institution": "University of California, Berkeley",
+      "degree": "Bachelor of Science",
+      "field": "Computer Science",
+      "startDate": "2015-08",
+      "endDate": "2019-05",
+      "gpa": "3.8/4.0",
+      "honors": ["Dean's List", "Magna Cum Laude"],
+      "description": "Focused on software engineering, algorithms, and machine learning",
+      "achievements": [
+        "Graduated with Magna Cum Laude honors",
+        "Teaching Assistant for Data Structures course (2 semesters)",
+        "Led university hackathon winning team - built AI-powered study assistant",
+        "Published research paper on neural network optimization"
+      ]
+    },
+    {
+      "id": "2",
+      "institution": "Stanford Online",
+      "degree": "Professional Certificate",
+      "field": "Machine Learning Specialization",
+      "startDate": "2021-01",
+      "endDate": "2021-06",
+      "description": "Advanced machine learning techniques and deep learning",
+      "achievements": [
+        "Completed 5-course specialization with 98% average score",
+        "Built recommendation system project featured in course showcase",
+        "Applied neural networks to real-world business problems"
+      ]
+    }
+  ],
+  "achievements": [
+    {
+      "id": "1",
+      "title": "Best Developer Tool - Product Hunt",
+      "date": "2024-03",
+      "description": "Portfolio Builder ranked #1 Product of the Day with 2,000+ upvotes",
+      "category": "Award"
+    },
+    {
+      "id": "2",
+      "title": "Open Source Contributor",
+      "date": "2023-ongoing",
+      "description": "500+ contributions to major open-source projects including React, Next.js, and Tailwind CSS",
+      "category": "Community"
+    },
+    {
+      "id": "3",
+      "title": "Tech Conference Speaker",
+      "date": "2023-09",
+      "description": "Delivered talk on 'Building Scalable Real-Time Applications' at ReactConf 2023 (500+ attendees)",
+      "category": "Speaking"
+    },
+    {
+      "id": "4",
+      "title": "Hackathon Winner - TechCrunch Disrupt",
+      "date": "2022-10",
+      "description": "1st place out of 200+ teams for building AI-powered code review assistant",
+      "category": "Competition"
+    },
+    {
+      "id": "5",
+      "title": "Published Author",
+      "date": "2022-05",
+      "description": "Published article 'Optimizing React Performance' on Dev.to with 50K+ views",
+      "category": "Writing"
+    }
+  ],
+  "certifications": [
+    {
+      "id": "1",
+      "name": "AWS Certified Solutions Architect - Professional",
+      "issuer": "Amazon Web Services",
+      "date": "2023-08",
+      "credentialId": "AWS-PSA-12345",
+      "url": "https://aws.amazon.com/certification/"
+    },
+    {
+      "id": "2",
+      "name": "Google Cloud Professional Cloud Architect",
+      "issuer": "Google Cloud",
+      "date": "2023-03",
+      "credentialId": "GCP-PCA-67890",
+      "url": "https://cloud.google.com/certification"
+    },
+    {
+      "id": "3",
+      "name": "MongoDB Certified Developer",
+      "issuer": "MongoDB University",
+      "date": "2022-11",
+      "credentialId": "MONGO-DEV-54321",
+      "url": "https://university.mongodb.com/certification"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "1",
+      "name": "Sarah Chen",
+      "position": "CTO at TechCorp",
+      "company": "TechCorp Inc.",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+      "text": "Abhishek is one of the most talented developers I've worked with. His ability to architect scalable solutions while maintaining code quality is exceptional. He took our AI platform from concept to 50K users in record time.",
+      "rating": 5
+    },
+    {
+      "id": "2",
+      "name": "Michael Rodriguez",
+      "position": "Product Manager",
+      "company": "DataFlow Solutions",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
+      "text": "Working with Abhishek was a game-changer. He doesn't just write code—he solves problems. His analytics dashboard transformed how our clients make decisions. Highly recommended!",
+      "rating": 5
+    },
+    {
+      "id": "3",
+      "name": "Emily Watson",
+      "position": "Founder & CEO",
+      "company": "StartupHub",
+      "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+      "text": "Abhishek helped us ship 5 MVPs in under a year. His technical expertise and product thinking made him invaluable to our early-stage clients. A true full-stack engineer.",
+      "rating": 5
+    }
+  ],
+  "blog": [
+    {
+      "id": "1",
+      "title": "Building Real-Time Applications with WebSockets",
+      "excerpt": "A comprehensive guide to implementing scalable WebSocket connections in Node.js applications",
+      "date": "2024-02-15",
+      "readTime": "8 min read",
+      "views": 12500,
+      "url": "https://blog.example.com/websockets-guide"
+    },
+    {
+      "id": "2",
+      "title": "Optimizing React Performance: A Deep Dive",
+      "excerpt": "Practical techniques for improving React app performance, from code splitting to memoization",
+      "date": "2023-11-20",
+      "readTime": "12 min read",
+      "views": 50000,
+      "url": "https://blog.example.com/react-performance"
+    },
+    {
+      "id": "3",
+      "title": "Microservices Architecture Patterns",
+      "excerpt": "Lessons learned from building and scaling microservices in production environments",
+      "date": "2023-08-10",
+      "readTime": "15 min read",
+      "views": 28000,
+      "url": "https://blog.example.com/microservices-patterns"
+    }
+  ],
+  "stats": {
+    "yearsOfExperience": 5,
+    "projectsCompleted": 50,
+    "coffeeConsumed": 2847,
+    "linesOfCode": 500000,
+    "openSourceContributions": 543,
+    "happyClients": 25
+  }
+}
