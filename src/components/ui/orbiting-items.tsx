@@ -63,10 +63,14 @@ export default function OrbitingItems({
   const [outerRotation, setOuterRotation] = useState(0);
 
   // Track rotation angles for keeping icons upright
-  // Use lower frequency on mobile for better performance
+  // Disabled on mobile for better performance
   useEffect(() => {
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    const updateInterval = isMobile ? 33 : 16; // 30fps on mobile, 60fps on desktop
+    
+    // Skip tracking on mobile to save CPU
+    if (isMobile) {
+      return;
+    }
     
     const interval = setInterval(() => {
       if (innerRef.current) {
@@ -87,7 +91,7 @@ export default function OrbitingItems({
           setOuterRotation(angle);
         }
       }
-    }, updateInterval);
+    }, 16);
     return () => clearInterval(interval);
   }, []);
 
@@ -110,11 +114,12 @@ export default function OrbitingItems({
         <div
           ref={innerRef}
           className={cn(
-            "absolute inset-0 animate-[rotate-full_45s] ease-linear repeat-infinite",
+            "absolute inset-0 animate-[rotate-full_45s] ease-linear repeat-infinite will-change-transform",
             {
               "[animation-play-state:paused]": innerPaused,
             }
           )}
+          style={{ transform: 'translateZ(0)' }}
         >
           {items.map((item, index) => {
             const isHovered = hoveredIndex?.circle === 'inner' && hoveredIndex?.index === index;
@@ -161,11 +166,12 @@ export default function OrbitingItems({
           <div
             ref={outerRef}
             className={cn(
-              "absolute inset-0 animate-[rotate-full_25s] ease-linear direction-reverse repeat-infinite",
+              "absolute inset-0 animate-[rotate-full_25s] ease-linear direction-reverse repeat-infinite will-change-transform",
               {
                 "[animation-play-state:paused]": outerPaused,
               }
             )}
+            style={{ transform: 'translateZ(0)' }}
           >
             {outerItems.map((item, index) => {
               const isHovered = hoveredIndex?.circle === 'outer' && hoveredIndex?.index === index;

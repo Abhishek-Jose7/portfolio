@@ -443,16 +443,16 @@ function PortfolioContent() {
               /* Initial State - Centered with Ethereal Shadow Background */
               <div className="flex-1 flex flex-col items-center justify-center px-4 relative">
                 {/* Ethereal Shadow Background - Full Screen */}
-                <div className="absolute inset-0">
+                <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15), transparent 70%)' }}>
                   <EtherealShadow
                     sizing="stretch"
                     color="rgba(139, 92, 246, 0.8)"
                     animation={{
-                      scale: 80,
-                      speed: 95
+                      scale: typeof window !== 'undefined' && window.innerWidth < 768 ? 0 : 80,
+                      speed: typeof window !== 'undefined' && window.innerWidth < 768 ? 0 : 95
                     }}
                     noise={{
-                      opacity: 50,
+                      opacity: typeof window !== 'undefined' && window.innerWidth < 768 ? 0 : 50,
                       scale: 1.5
                     }}
                   >
@@ -502,7 +502,7 @@ function PortfolioContent() {
                 <div className="pointer-events-none absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-background to-transparent z-10"></div>
                 
                 {/* Scrollable Chat Area */}
-                <div className="flex-1 overflow-y-auto overflow-x-hidden pb-32 md:pb-36" ref={scrollRef}>
+                <div className="flex-1 overflow-y-auto overflow-x-hidden pb-32 md:pb-36" ref={scrollRef} style={{ WebkitOverflowScrolling: 'touch' }}>
                   <div className="max-w-4xl mx-auto py-3 md:py-4 px-3 md:px-4">
                     {messages.map((message, index) => (
                       <ChatMessage

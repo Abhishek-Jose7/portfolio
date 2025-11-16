@@ -16,7 +16,7 @@ export function SuggestedPrompts({ prompts, onSelect }: SuggestedPromptsProps) {
       <div
         ref={scrollRef}
         className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}
       >
         {prompts.map((prompt, index) => (
           <motion.button

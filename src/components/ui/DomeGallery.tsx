@@ -143,7 +143,7 @@ export default function DomeGallery({
   images = DEFAULT_IMAGES,
   fit = 1.2,
   fitBasis = 'auto',
-  minRadius = typeof window !== 'undefined' && window.innerWidth < 768 ? 800 : 1200,
+  minRadius = 1200,
   maxRadius = Infinity,
   padFactor = 0,
   overlayBlurColor = '#060010',
@@ -234,10 +234,7 @@ export default function DomeGallery({
         default:
           basis = aspect >= 1.3 ? w : minDim;
       }
-      // Zoom out more on mobile
-      const isMobile = w < 768;
-      const mobileFitMultiplier = isMobile ? 0.7 : 1;
-      let radius = basis * fit * mobileFitMultiplier;
+      let radius = basis * fit;
       const heightGuard = h * 1.35;
       radius = Math.min(radius, heightGuard);
       radius = clamp(radius, minRadius, maxRadius);
@@ -307,16 +304,15 @@ export default function DomeGallery({
 
   const startInertia = useCallback(
     (vx: number, vy: number) => {
-      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-      const MAX_V = isMobile ? 1.0 : 1.4;
-      let vX = clamp(vx, -MAX_V, MAX_V) * (isMobile ? 60 : 80);
-      let vY = clamp(vy, -MAX_V, MAX_V) * (isMobile ? 60 : 80);
+      const MAX_V = 1.4;
+      let vX = clamp(vx, -MAX_V, MAX_V) * 80;
+      let vY = clamp(vy, -MAX_V, MAX_V) * 80;
 
       let frames = 0;
       const d = clamp(dragDampening ?? 0.6, 0, 1);
       const frictionMul = 0.94 + 0.055 * d;
-      const stopThreshold = isMobile ? 0.03 : (0.015 - 0.01 * d);
-      const maxFrames = Math.round((isMobile ? 60 : 90) + 270 * d);
+      const stopThreshold = 0.015 - 0.01 * d;
+      const maxFrames = Math.round(90 + 270 * d);
 
       const step = () => {
         vX *= frictionMul;

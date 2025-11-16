@@ -26,10 +26,13 @@ export function ChatMessage({ role, content, isTyping = false, onPersonaChange }
   useEffect(() => {
     if (role === "assistant" && isTyping) {
       if (currentIndex < content.length) {
+        // Faster typing on mobile for better UX
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+        const delay = isMobile ? 5 : 10;
         const timeout = setTimeout(() => {
           setDisplayedContent(content.slice(0, currentIndex + 1))
           setCurrentIndex(currentIndex + 1)
-        }, 10)
+        }, delay)
         return () => clearTimeout(timeout)
       }
     } else {

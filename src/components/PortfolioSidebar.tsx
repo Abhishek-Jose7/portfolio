@@ -124,7 +124,7 @@ export function PortfolioSidebar({ onSectionClick, onNewChat, activeSection, isO
           width: isOpen ? 270 : isMobile ? 0 : 60
         }}
         transition={{ 
-          duration: 0.35,
+          duration: isMobile ? 0.2 : 0.35,
           ease: [0.25, 0.1, 0.25, 1]
         }}
         className={`${isMobile ? 'fixed' : 'relative'} h-screen border-r border-white/10 bg-gradient-to-b from-sidebar/95 via-sidebar to-sidebar/95 backdrop-blur-xl flex-shrink-0 z-50`}
@@ -132,7 +132,8 @@ export function PortfolioSidebar({ onSectionClick, onNewChat, activeSection, isO
           minWidth: isOpen ? 270 : isMobile ? 0 : 60,
           maxWidth: isOpen ? 270 : isMobile ? 0 : 60,
           boxShadow: isOpen ? '4px 0 32px rgba(0, 0, 0, 0.2), inset -1px 0 0 0 rgba(255, 255, 255, 0.05)' : 'none',
-          left: isMobile ? 0 : 'auto'
+          left: isMobile ? 0 : 'auto',
+          willChange: 'transform, width'
         }}
       >
         <AnimatePresence mode="wait">
