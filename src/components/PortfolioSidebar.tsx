@@ -129,11 +129,11 @@ export function PortfolioSidebar({ onSectionClick, onNewChat, activeSection, isO
           duration: 0.35,
           ease: [0.25, 0.1, 0.25, 1]
         }}
-        className={`${isMobile ? 'fixed' : 'relative'} h-screen border-r border-border bg-sidebar flex-shrink-0 z-50`}
+        className={`${isMobile ? 'fixed' : 'relative'} h-screen border-r border-white/10 bg-gradient-to-b from-sidebar/95 via-sidebar to-sidebar/95 backdrop-blur-xl flex-shrink-0 z-50`}
         style={{ 
           minWidth: isOpen ? 270 : isMobile ? 0 : 60,
           maxWidth: isOpen ? 270 : isMobile ? 0 : 60,
-          boxShadow: isOpen ? '4px 0 24px rgba(0, 0, 0, 0.15)' : 'none',
+          boxShadow: isOpen ? '4px 0 32px rgba(0, 0, 0, 0.2), inset -1px 0 0 0 rgba(255, 255, 255, 0.05)' : 'none',
           left: isMobile ? 0 : 'auto'
         }}
       >
@@ -159,9 +159,10 @@ export function PortfolioSidebar({ onSectionClick, onNewChat, activeSection, isO
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ delay: 0.15, duration: 0.2 }}
-                      className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-primary/50 flex items-center justify-center flex-shrink-0"
+                      className="relative h-8 w-8 rounded-lg bg-gradient-to-br from-primary via-primary/80 to-primary/60 flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/20 overflow-hidden"
                     >
-                      <Sparkles className="h-4 w-4 text-white" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_3s_ease-in-out_infinite]" />
+                      <Sparkles className="h-4 w-4 text-white relative z-10" />
                     </motion.div>
                   </div>
                   <Button
@@ -203,10 +204,11 @@ export function PortfolioSidebar({ onSectionClick, onNewChat, activeSection, isO
                 <Button
                   onClick={onNewChat}
                   size="sm"
-                  className="w-full justify-start gap-2 bg-transparent hover:bg-accent text-foreground border border-border h-9"
+                  className="relative w-full justify-start gap-2 bg-white/5 hover:bg-white/10 text-foreground border border-white/10 h-9 backdrop-blur-sm shadow-[0_2px_8px_rgba(0,0,0,0.1)] transition-all duration-300 overflow-hidden group"
                 >
-                  <Plus className="h-4 w-4 flex-shrink-0" />
-                  <span className="text-sm">New Chat</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <Plus className="h-4 w-4 flex-shrink-0 relative z-10" />
+                  <span className="text-sm relative z-10">New Chat</span>
                 </Button>
               </motion.div>
 
@@ -220,10 +222,11 @@ export function PortfolioSidebar({ onSectionClick, onNewChat, activeSection, isO
                 <Button
                   onClick={() => window.open(portfolioData.personal.resumeUrl, "_blank")}
                   size="sm"
-                  className="w-full justify-start gap-2 bg-primary hover:bg-primary/90 h-9"
+                  className="relative w-full justify-start gap-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 h-9 shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-300 overflow-hidden group"
                 >
-                  <Download className="h-4 w-4 flex-shrink-0" />
-                  <span className="text-sm">Download Resume</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                  <Download className="h-4 w-4 flex-shrink-0 relative z-10" />
+                  <span className="text-sm relative z-10">Download Resume</span>
                 </Button>
               </motion.div>
 
@@ -309,67 +312,6 @@ export function PortfolioSidebar({ onSectionClick, onNewChat, activeSection, isO
 
                   <Separator />
 
-                  {/* Recent Chats */}
-                  {chatSessions.length > 0 && (
-                    <div>
-                      <Button
-                        onClick={() => setChatsExpanded(!chatsExpanded)}
-                        variant="ghost"
-                        size="sm"
-                        className="w-full justify-start gap-2 px-2 mb-1 hover:bg-accent h-8"
-                      >
-                        <MessageSquare className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                        <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex-1 text-left">
-                          Recent Chats
-                        </h4>
-                        <motion.div
-                          animate={{ rotate: chatsExpanded ? 0 : -90 }}
-                          transition={{ 
-                            duration: 0.3,
-                            ease: [0.4, 0, 0.2, 1]
-                          }}
-                          className="flex-shrink-0"
-                        >
-                          <ChevronDown className="h-3 w-3 text-muted-foreground" />
-                        </motion.div>
-                      </Button>
-                      
-                      <AnimatePresence initial={false}>
-                        {chatsExpanded && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ 
-                              duration: 0.3,
-                              ease: [0.4, 0, 0.2, 1]
-                            }}
-                            style={{ overflow: "hidden" }}
-                          >
-                            <div className="space-y-1 pt-1">
-                              {chatSessions.slice(0, 5).reverse().map((chat) => (
-                                <Button
-                                  key={chat.id}
-                                  onClick={() => onLoadChat(chat.id)}
-                                  variant="ghost"
-                                  size="sm"
-                                  className={`w-full justify-start gap-2 text-sm h-8 px-2 ${
-                                    currentChatId === chat.id ? "bg-accent" : ""
-                                  }`}
-                                >
-                                  <MessageSquare className="h-3.5 w-3.5 flex-shrink-0 text-primary/70" />
-                                  <span className="truncate text-left text-xs">{chat.title}</span>
-                                </Button>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  )}
-
-                  <Separator />
-
                   {/* Sections */}
                   <motion.div
                     initial={{ opacity: 0, x: -10 }}
@@ -408,6 +350,68 @@ export function PortfolioSidebar({ onSectionClick, onNewChat, activeSection, isO
                       })}
                     </div>
                   </motion.div>
+
+                  {/* Recent Chats */}
+                  {chatSessions.length > 0 && (
+                    <>
+                      <Separator />
+                      <div>
+                        <Button
+                          onClick={() => setChatsExpanded(!chatsExpanded)}
+                          variant="ghost"
+                          size="sm"
+                          className="w-full justify-start gap-2 px-2 mb-1 hover:bg-accent h-8"
+                        >
+                          <MessageSquare className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                          <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex-1 text-left">
+                            Recent Chats
+                          </h4>
+                          <motion.div
+                            animate={{ rotate: chatsExpanded ? 0 : -90 }}
+                            transition={{ 
+                              duration: 0.3,
+                              ease: [0.4, 0, 0.2, 1]
+                            }}
+                            className="flex-shrink-0"
+                          >
+                            <ChevronDown className="h-3 w-3 text-muted-foreground" />
+                          </motion.div>
+                        </Button>
+                        
+                        <AnimatePresence initial={false}>
+                          {chatsExpanded && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ 
+                                duration: 0.3,
+                                ease: [0.4, 0, 0.2, 1]
+                              }}
+                              style={{ overflow: "hidden" }}
+                            >
+                              <div className="space-y-1 pt-1">
+                                {chatSessions.slice(0, 5).reverse().map((chat) => (
+                                  <Button
+                                    key={chat.id}
+                                    onClick={() => onLoadChat(chat.id)}
+                                    variant="ghost"
+                                    size="sm"
+                                    className={`w-full justify-start gap-2 text-sm h-8 px-2 ${
+                                      currentChatId === chat.id ? "bg-accent" : ""
+                                    }`}
+                                  >
+                                    <MessageSquare className="h-3.5 w-3.5 flex-shrink-0 text-primary/70" />
+                                    <span className="truncate text-left text-xs">{chat.title}</span>
+                                  </Button>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </>
+                  )}
                 </motion.div>
               </ScrollArea>
 

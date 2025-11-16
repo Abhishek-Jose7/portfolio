@@ -3,18 +3,17 @@
     "name": "Abhishek Jose",
     "title": "Full Stack Developer",
     "tagline": "Building scalable web applications with modern technologies",
-    "bio": "I'm a passionate full-stack developer with 4+ years of experience crafting elegant solutions to complex problems. I specialize in React, Next.js, Node.js, and cloud architectures. I love turning ideas into reality through clean code and thoughtful design.",
-    "location": "San Francisco, CA",
-    "email": "abhishek.jose@example.com",
-    "phone": "+1 (555) 123-4567",
+    "bio": "I'm a passionate full-stack developer crafting elegant solutions to complex problems. I specialize in React, Next.js, Node.js, and machine learning. I love turning ideas into reality through clean code and thoughtful design.",
+    "location": "Seawoods, Navi Mumbai",
+    "email": "abhishekjose780@gmail.com",
+    "phone": "7738969557",
     "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
     "resumeUrl": "/resume.pdf"
   },
   "social": {
-    "github": "https://github.com/abhishekjose",
+    "github": "https://github.com/Abhishek-Jose7",
     "linkedin": "https://linkedin.com/in/abhishekjose",
-    "instagram": "https://instagram.com/abhishekjose",
-    "twitter": "https://twitter.com/abhishekjose"
+    "instagram": "https://instagram.com/abhishekjose"
   },
   "skills": {
     "frontend": [
@@ -45,164 +44,229 @@
     ]
   },
   "projects": [
-    {
-      "id": "1",
-      "title": "AI SaaS Platform",
-      "description": "Enterprise-grade AI platform serving 50,000+ users with real-time collaboration features",
-      "longDescription": "Built a comprehensive AI-powered SaaS platform from the ground up that enables teams to collaborate on machine learning projects. The platform handles real-time updates, complex data visualizations, and supports multiple AI model integrations.",
-      "category": "AI/ML",
-      "tags": ["Next.js", "Python", "TensorFlow", "WebSocket", "PostgreSQL"],
-      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop",
-      "metrics": {
-        "users": "50,000+",
-        "uptime": "99.9%",
-        "performance": "40ms response time"
-      },
-      "problem": "Companies needed a unified platform to manage AI workflows without vendor lock-in",
-      "approach": "Microservices architecture with real-time sync, progressive enhancement, and edge computing",
-      "challenges": "Handling concurrent model training, optimizing WebSocket connections, managing GPU resources",
-      "results": "Reduced AI workflow time by 60%, achieved 99.9% uptime, scaled to 50K users in 6 months",
-      "github": "https://github.com/abhishekjose/ai-saas",
-      "demo": "https://ai-platform-demo.com",
-      "featured": true,
-      "year": 2024
+  {
+    "id": "1",
+    "title": "Hangout",
+    "description": "AI-powered group planner that suggests the best hangout or date spots based on group preferences, budgets, and locations",
+    "longDescription": "A smart web app that helps groups decide where to hang out by analyzing location midpoints, budgets, and vibe preferences. The system uses clustering algorithms, Google Maps APIs, and machine learning to recommend personalized hangout plans. It supports group creation, live voting, and collaborative plan editing.",
+    "category": "AI / Web App",
+    "tags": ["Python", "Flask", "JavaScript", "Google Maps API", "ML", "HTML", "CSS"],
+    "image": "https://images.unsplash.com/photo-1515169067865-5387ec356754?w=800&h=500&fit=crop",
+    "metrics": {
+      "users": "300+",
+      "accuracy": "85%",
+      "plansGenerated": "1000+"
     },
-    {
-      "id": "2",
-      "title": "Real-Time Analytics Dashboard",
-      "description": "High-performance analytics dashboard processing 1M+ events per second",
-      "longDescription": "Developed a real-time analytics platform capable of ingesting, processing, and visualizing millions of events per second. Features include custom query builder, interactive visualizations, and automated alerting.",
-      "category": "Data",
-      "tags": ["React", "D3.js", "Apache Kafka", "Redis", "ClickHouse"],
-      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
-      "metrics": {
-        "throughput": "1M+ events/sec",
-        "latency": "< 100ms",
-        "cost": "40% reduction"
-      },
-      "problem": "Marketing teams needed instant insights from massive data streams",
-      "approach": "Event-driven architecture with streaming pipelines and column-oriented database",
-      "challenges": "Real-time aggregations, memory optimization, handling data skew",
-      "results": "Enabled real-time decision making, reduced infrastructure costs by 40%, 10x faster queries",
-      "github": "https://github.com/abhishekjose/analytics",
-      "demo": "https://analytics-demo.com",
-      "featured": true,
-      "year": 2023
+    "problem": "Groups often waste time deciding where to meet that fits everyone’s budget and location.",
+    "approach": "Used midpoint algorithms, preference clustering, and Google Places data to generate optimized suggestions.",
+    "challenges": "Data synchronization, location filtering accuracy, and dynamic budget clustering.",
+    "results": "Saved users 70% decision time and improved satisfaction through smart group recommendations.",
+    "github": "https://github.com/Abhishek-Jose7/intelligent-hangout-planner",
+    "demo": "https://hangout-planner.vercel.app",
+    "featured": true,
+    "year": 2025
+  },
+  {
+    "id": "2",
+    "title": "Health",
+    "description": "Mobile app that analyzes symptoms and predicts potential medical conditions using machine learning",
+    "longDescription": "Built a Flask API-powered mobile application that uses ML models to predict possible health conditions from user symptoms. Features include symptom tracking, health recommendations, and integration with wearable data for continuous insights.",
+    "category": "Healthcare / AI",
+    "tags": ["Python", "Flask", "TensorFlow", "React Native", "SQLite"],
+    "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop",
+    "metrics": {
+      "accuracy": "90%",
+      "users": "150+ testers",
+      "responseTime": "<2s"
     },
-    {
-      "id": "3",
-      "title": "E-Commerce Marketplace",
-      "description": "Multi-vendor marketplace with 10K+ sellers and $5M+ in transactions",
-      "longDescription": "Built a scalable marketplace platform connecting buyers and sellers with advanced search, recommendation engine, secure payments, and comprehensive seller tools.",
-      "category": "E-Commerce",
-      "tags": ["Next.js", "Node.js", "Stripe", "Elasticsearch", "AWS"],
-      "image": "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=500&fit=crop",
-      "metrics": {
-        "sellers": "10,000+",
-        "transactions": "$5M+",
-        "conversion": "3.2%"
-      },
-      "problem": "Small businesses struggled with expensive marketplace fees and complex setup",
-      "approach": "Modular architecture with AI-powered recommendations and automated onboarding",
-      "challenges": "Payment reconciliation, fraud prevention, search relevance at scale",
-      "results": "Onboarded 10K sellers in 8 months, processed $5M+ transactions, 3.2% conversion rate",
-      "github": "https://github.com/abhishekjose/marketplace",
-      "demo": "https://marketplace-demo.com",
-      "featured": true,
-      "year": 2023
+    "problem": "People often misinterpret symptoms and delay early diagnosis due to lack of accessible tools.",
+    "approach": "Implemented supervised ML models for condition prediction and integrated them into a cross-platform mobile app.",
+    "challenges": "Data imbalance, multi-class classification accuracy, and privacy compliance.",
+    "results": "Achieved 90% prediction accuracy and helped users identify potential risks early.",
+    "github": "https://github.com/Abhishek-Jose7/ai-health-app",
+    "featured": true,
+    "year": 2025
+  },
+  {
+    "id": "3",
+    "title": "GDSC CRCE Website",
+    "description": "Dynamic, responsive website for Google Developer Student Clubs at Fr. CRCE",
+    "longDescription": "Developed and maintained the official GDSC CRCE website featuring event highlights, project showcases, and member profiles. The site integrates animations, reusable components, and modern design principles using Next.js and Tailwind CSS.",
+    "category": "Web Development / Club Management",
+    "tags": ["Next.js", "React", "Tailwind CSS", "JavaScript", "Framer Motion"],
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=500&fit=crop",
+    "metrics": {
+      "visitors": "3,000+ monthly",
+      "eventsListed": "20+",
+      "membersFeatured": "50+"
     },
-    {
-      "id": "4",
-      "title": "Healthcare Management System",
-      "description": "HIPAA-compliant patient management system serving 200+ clinics",
-      "longDescription": "Created a comprehensive healthcare management platform with patient records, appointment scheduling, telemedicine, billing, and analytics—all HIPAA compliant.",
-      "category": "Healthcare",
-      "tags": ["React", "Node.js", "MongoDB", "WebRTC", "Azure"],
-      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop",
-      "metrics": {
-        "clinics": "200+",
-        "patients": "50,000+",
-        "satisfaction": "4.8/5"
-      },
-      "problem": "Clinics needed affordable, compliant software with telemedicine capabilities",
-      "approach": "HIPAA-compliant cloud architecture with end-to-end encryption and audit logs",
-      "challenges": "HIPAA compliance, video call quality, offline support, data security",
-      "results": "Served 200+ clinics, 50K+ patients, 4.8/5 satisfaction, zero security breaches",
-      "demo": "https://healthcare-demo.com",
-      "featured": false,
-      "year": 2022
+    "problem": "The club needed a centralized, interactive website to showcase activities and engage new members.",
+    "approach": "Built a scalable, aesthetic website emphasizing accessibility and smooth user interaction.",
+    "results": "Increased engagement by 60% and boosted event signups through real-time updates.",
+    "github": "https://github.com/Abhishek-Jose7/gdsc-crce-website",
+    "demo": "https://gdsc-crce.vercel.app",
+    "featured": true,
+    "year": 2025
+  },
+  {
+    "id": "4",
+    "title": "Bit N Build Website",
+    "description": "Event website for the Bit N Build hackathon featuring registrations, schedules, and live leaderboards",
+    "longDescription": "Designed and developed the official Bit N Build hackathon website hosted by GDSC CRCE. The site supports registration, real-time event tracking, and team showcase pages with a vibrant, modern aesthetic built on Next.js.",
+    "category": "Event Website / Hackathon",
+    "tags": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js"],
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=500&fit=crop",
+    "metrics": {
+      "participants": "500+",
+      "teamsRegistered": "100+",
+      "eventDuration": "48 hours"
     },
-    {
-      "id": "5",
-      "title": "Social Media Analytics Tool",
-      "description": "Social media monitoring platform analyzing 10M+ posts daily",
-      "longDescription": "Developed a comprehensive social listening platform that tracks brand mentions, sentiment analysis, competitor analysis, and trend detection across major social platforms.",
-      "category": "Analytics",
-      "tags": ["Python", "React", "NLP", "PostgreSQL", "Redis"],
-      "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=500&fit=crop",
-      "metrics": {
-        "posts": "10M+ daily",
-        "accuracy": "92%",
-        "languages": "25+"
-      },
-      "problem": "Brands needed real-time insights into social media conversations",
-      "approach": "NLP pipelines with sentiment analysis, entity recognition, and trend detection",
-      "challenges": "Multi-language support, real-time processing, API rate limits",
-      "results": "92% sentiment accuracy, 25+ languages, helped brands respond 5x faster",
-      "github": "https://github.com/abhishekjose/social-analytics",
-      "featured": false,
-      "year": 2022
+    "problem": "Needed an engaging and efficient way to manage large-scale hackathon registrations and updates.",
+    "approach": "Created an optimized event platform with fast load times, responsive design, and admin controls.",
+    "results": "Handled 500+ concurrent users with zero downtime and improved participant coordination.",
+    "github": "https://github.com/Abhishek-Jose7/bitnbuild-website",
+    "demo": "https://bitnbuild.vercel.app",
+    "featured": true,
+    "year": 2025
+  },
+  {
+    "id": "5",
+    "title": "College Website (Ongoing)",
+    "description": "Leading frontend development for the new official college website using Next.js, TypeScript, and Tailwind CSS",
+    "longDescription": "Redesigning the Fr. CRCE official website from scratch to create a modern, responsive, and accessible experience for students and faculty. The platform focuses on structured content management, dynamic news sections, and interactive student resources.",
+    "category": "Web Development / College Project",
+    "tags": ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    "image": "https://images.unsplash.com/photo-1550439062-609e1531270e?w=800&h=500&fit=crop",
+    "metrics": {
+      "progress": "In Development",
+      "targetLaunch": "2026",
+      "features": "CMS Integration, Events, Resources"
     },
-    {
-      "id": "6",
-      "title": "Developer Portfolio Builder",
-      "description": "No-code portfolio builder used by 5,000+ developers",
-      "longDescription": "Built a platform that lets developers create stunning portfolios without writing code. Features include drag-and-drop editor, GitHub integration, custom domains, and analytics.",
-      "category": "Developer Tools",
-      "tags": ["Next.js", "Tailwind", "Prisma", "Vercel", "GitHub API"],
-      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
-      "metrics": {
-        "users": "5,000+",
-        "portfolios": "8,000+",
-        "satisfaction": "4.7/5"
-      },
-      "problem": "Developers wanted beautiful portfolios but lacked design skills",
-      "approach": "Template-based system with smart GitHub integration and one-click deploy",
-      "challenges": "Template customization, GitHub API rate limits, performance optimization",
-      "results": "5K+ users, 8K+ portfolios created, 4.7/5 rating, 80% completed in under 30 min",
-      "github": "https://github.com/abhishekjose/portfolio-builder",
-      "demo": "https://portfolio-builder-demo.com",
-      "featured": false,
-      "year": 2024
-    }
-  ],
+    "problem": "The college’s existing website lacked responsiveness, modern design, and ease of content updates.",
+    "approach": "Building a scalable frontend architecture with reusable components and integrated content management.",
+    "results": "Currently leading development and design for improved navigation and accessibility.",
+    "github": "https://github.com/Abhishek-Jose7/frcrce-website",
+    "featured": false,
+    "year": 2025
+  },
+  {
+    "id": "6",
+    "title": "Smart Visual Assistant",
+    "description": "AI visual recognition system that helps users interpret real-world scenes and objects in real time",
+    "longDescription": "Developed an AI-powered visual assistant that uses computer vision and NLP to describe scenes, identify objects, and assist visually impaired users. Built with TensorFlow and Flask, the assistant processes camera input, recognizes objects, and narrates descriptions using speech synthesis.",
+    "category": "AI / Accessibility",
+    "tags": ["Python", "Flask", "TensorFlow", "OpenCV", "Speech Synthesis"],
+    "image": "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?w=800&h=500&fit=crop",
+    "metrics": {
+      "accuracy": "93%",
+      "responseTime": "<1s",
+      "useCases": "Object detection, scene description, text reading"
+    },
+    "problem": "Visually impaired individuals face difficulty identifying their surroundings independently.",
+    "approach": "Combined computer vision with real-time audio feedback to enhance accessibility and independence.",
+    "challenges": "Latency reduction, multi-object detection, and accurate scene description generation.",
+    "results": "Delivered a functional prototype capable of real-time narration with 93% accuracy.",
+    "github": "https://github.com/Abhishek-Jose7/smart-visual-assistant",
+    "demo": "https://visual-assistant-demo.vercel.app",
+    "featured": false,
+    "year": 2025
+  },
+  {
+    "id": "7",
+    "title": "FinAi",
+    "description": "AI-powered financial advisor that tracks expenses, predicts trends, and offers personalized investment advice",
+    "longDescription": "A complete financial management ecosystem with an AI chatbot and interactive dashboard. The bot tracks spending, forecasts savings, and offers automated investment insights. Built using Flask, Pandas, and Scikit-learn, it integrates with email and Telegram for smart notifications.",
+    "category": "Finance / AI",
+    "tags": ["Flask", "Python", "Pandas", "Scikit-learn", "HTML", "JavaScript", "Telegram API"],
+    "image": "https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=800&h=500&fit=crop",
+    "metrics": {
+      "users": "200+",
+      "predictionAccuracy": "91%",
+      "platforms": "Web + Telegram"
+    },
+    "problem": "Most personal finance tools lack intelligent prediction and cross-platform usability.",
+    "approach": "Built a hybrid financial assistant integrating AI insights with an interactive analytics dashboard.",
+    "challenges": "Integrating multiple APIs, ensuring financial data privacy, and forecasting accuracy.",
+    "results": "Improved financial tracking efficiency by 65% and investment planning through predictive analytics.",
+    "github": "https://github.com/Abhishek-Jose7/finance-bot-dashboard",
+    "demo": "https://financebot-dashboard.vercel.app",
+    "featured": true,
+    "year": 2025
+  },
+  {
+    "id": "8",
+    "title": "Sponzy",
+    "description": "End-to-end sponsorship and event management platform connecting students, sponsors, and organizers",
+    "longDescription": "EduSponsor+ (Sponzy) is a full-stack web platform built with Flask, React, and PostgreSQL that bridges student-led events with potential sponsors. It supports profile creation, event management, direct sponsor communication, analytics, and payment tracking using Razorpay. Includes AI-powered sponsor matching and collaboration tools.",
+    "category": "Web / Sponsorship / AI",
+    "tags": ["Flask", "React", "PostgreSQL", "Razorpay API", "WebSockets", "AI Matching"],
+    "image": "https://images.unsplash.com/photo-1532619675605-1ede6e4e9400?w=800&h=500&fit=crop",
+    "metrics": {
+      "events": "100+ managed",
+      "users": "500+",
+      "matchingAccuracy": "87%"
+    },
+    "problem": "Student events struggle to find the right sponsors efficiently and transparently.",
+    "approach": "Created a unified ecosystem for sponsorship management with AI-based recommendations and analytics.",
+    "challenges": "Building real-time sponsor-event interactions, payment integration, and scalable database structure.",
+    "results": "Automated 80% of sponsorship workflow and enabled dozens of successful collaborations.",
+    "github": "https://github.com/Abhishek-Jose7/sponzy",
+    "demo": "https://sponzy.vercel.app",
+    "featured": true,
+    "year": 2025
+  },
+  {
+    "id": "9",
+    "title": "DisabledIn",
+    "description": "AI-powered job platform designed to help individuals with disabilities find suitable employment",
+    "longDescription": "An accessibility-focused job platform built using Flask and HTML/CSS that connects job seekers with inclusive companies. The system integrates accessibility filters, company reviews, and skill-based recommendations. It also includes a resume builder and onboarding assistant tailored for each user’s abilities.",
+    "category": "Social Impact / AI",
+    "tags": ["Flask", "Python", "SQLite", "Accessibility", "HTML", "CSS"],
+    "image": "https://images.unsplash.com/photo-1573496799515-eebbb63814f2?w=800&h=500&fit=crop",
+    "metrics": {
+      "users": "500+ beta testers",
+      "uptime": "99%",
+      "feedback": "4.9/5 user satisfaction"
+    },
+    "problem": "Finding accessible and inclusive jobs remains difficult for individuals with disabilities.",
+    "approach": "Designed an intelligent, user-centered platform that personalizes opportunities based on accessibility needs and job skills.",
+    "challenges": "Implementing accessibility-friendly UI and collecting meaningful job data.",
+    "results": "Enabled 200+ job applications during beta and connected users to inclusive companies.",
+    "github": "https://github.com/Abhishek-Jose7/inclusive-job-platform",
+    "demo": "https://inclusion-demo.vercel.app",
+    "featured": false,
+    "year": 2025
+  }
+]
+
+,
   "experience": [
     {
       "id": "1",
-      "company": "TechCorp Inc.",
-      "position": "Senior Full Stack Developer",
-      "location": "San Francisco, CA",
+      "company": "GDSC CRCE",
+      "position": "Technical associate",
+      "location": "Bandra, Mumbai",
       "type": "Full-time",
-      "startDate": "2022-01",
+      "startDate": "2025",
       "endDate": null,
       "current": true,
-      "description": "Leading development of AI-powered enterprise applications serving millions of users",
+      "description": "Leading technical initiatives and organizing international tech events at Google Developer Student Clubs, Fr. CRCE.",
       "achievements": [
-        "Architected and built AI SaaS platform from scratch, growing to 50,000+ users",
-        "Reduced API response times by 60% through database optimization and caching strategies",
-        "Mentored 5 junior developers, established code review practices and technical standards",
-        "Implemented CI/CD pipelines reducing deployment time from 2 hours to 10 minutes"
+        "Designed, developed, and maintained websites for major GDSC initiatives, including Bit N Build and Club Website",
+        "Managed the Agile Conference 2025, a premier two-day international event featuring renowned global speakers",
+        "Ensured coordination with judges and mentors for successful event execution",
+        "Collaborated with cross-functional teams to ensure smooth deployment, visual harmony, and consistent branding across all platforms"
       ],
-      "technologies": ["React", "Next.js", "Node.js", "PostgreSQL", "AWS", "Docker"]
+      "technologies": ["Web Development", "Event Management", "Networking"]
     },
     {
       "id": "2",
-      "company": "DataFlow Solutions",
-      "position": "Full Stack Developer",
-      "location": "Remote",
+      "company": "GDSC CRCE",
+      "position": "Workforce Member",
+      "location": "Bandra, Mumbai",
       "type": "Full-time",
-      "startDate": "2020-06",
-      "endDate": "2021-12",
+      "startDate": "2024",
+      "endDate": "",
       "current": false,
       "description": "Built real-time analytics platforms and data visualization tools",
       "achievements": [
@@ -215,40 +279,35 @@
     },
     {
       "id": "3",
-      "company": "StartupHub",
-      "position": "Junior Full Stack Developer",
-      "location": "Austin, TX",
+      "company": "Existence",
+      "position": "Human",
+      "location": "Earth, Milky Way",
       "type": "Full-time",
-      "startDate": "2019-01",
-      "endDate": "2020-05",
+      "startDate": "2023--",
+      "endDate": "",
       "current": false,
-      "description": "Developed web applications and APIs for early-stage startups",
+      "description": "Living life and building meaningful experiences",
       "achievements": [
-        "Built 5+ MVPs for startup clients from concept to production launch",
-        "Implemented responsive designs increasing mobile conversions by 45%",
-        "Created reusable component library reducing development time by 30%",
-        "Collaborated with designers and product managers in agile environment"
+        "Successfully navigated multiple life challenges",
+        "Developed strong problem-solving skills",
+        "Built meaningful relationships and connections"
       ],
-      "technologies": ["React", "Node.js", "MongoDB", "Express", "Heroku"]
+      "technologies": ["Life Skills", "Adaptability", "Growth Mindset"]
     }
   ],
   "education": [
     {
       "id": "1",
-      "institution": "University of California, Berkeley",
-      "degree": "Bachelor of Science",
+      "institution": "Fr. Conceicao Rodrigues College of Engineering",
+      "degree": "Bachelor of Technology",
       "field": "Computer Science",
-      "startDate": "2015-08",
-      "endDate": "2019-05",
-      "gpa": "3.8/4.0",
-      "honors": ["Dean's List", "Magna Cum Laude"],
+      "startDate": "2024-10",
+      "endDate": "2028",
+      "gpa": "-",
+      "honors": [],
       "description": "Focused on software engineering, algorithms, and machine learning",
       "achievements": [
-        "Graduated with Magna Cum Laude honors",
-        "Teaching Assistant for Data Structures course (2 semesters)",
-        "Led university hackathon winning team - built AI-powered study assistant",
-        "Published research paper on neural network optimization"
-      ]
+        ]
     },
     {
       "id": "2",
@@ -265,43 +324,7 @@
       ]
     }
   ],
-  "achievements": [
-    {
-      "id": "1",
-      "title": "Best Developer Tool - Product Hunt",
-      "date": "2024-03",
-      "description": "Portfolio Builder ranked #1 Product of the Day with 2,000+ upvotes",
-      "category": "Award"
-    },
-    {
-      "id": "2",
-      "title": "Open Source Contributor",
-      "date": "2023-ongoing",
-      "description": "500+ contributions to major open-source projects including React, Next.js, and Tailwind CSS",
-      "category": "Community"
-    },
-    {
-      "id": "3",
-      "title": "Tech Conference Speaker",
-      "date": "2023-09",
-      "description": "Delivered talk on 'Building Scalable Real-Time Applications' at ReactConf 2023 (500+ attendees)",
-      "category": "Speaking"
-    },
-    {
-      "id": "4",
-      "title": "Hackathon Winner - TechCrunch Disrupt",
-      "date": "2022-10",
-      "description": "1st place out of 200+ teams for building AI-powered code review assistant",
-      "category": "Competition"
-    },
-    {
-      "id": "5",
-      "title": "Published Author",
-      "date": "2022-05",
-      "description": "Published article 'Optimizing React Performance' on Dev.to with 50K+ views",
-      "category": "Writing"
-    }
-  ],
+  "achievements": [],
   "certifications": [
     {
       "id": "1",

@@ -38,32 +38,30 @@ export function ChatMessage({ role, content, isTyping = false, onPersonaChange }
   }, [content, currentIndex, role, isTyping])
 
   if (role === "user") {
-    // User message - on the right
+    // User message - ChatGPT style blue bubble on the right
     return (
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="flex justify-end gap-3 px-4 py-3"
+        className="flex justify-end px-4 py-2 my-2"
       >
-        <div className="flex flex-col items-end max-w-[70%]">
-          <div className="rounded-3xl bg-primary px-5 py-3 text-primary-foreground">
-            <p className="text-sm leading-relaxed whitespace-pre-wrap">
-              {content}
-            </p>
-          </div>
+        <div className="bg-primary text-white px-4 py-2 rounded-2xl max-w-[70%]">
+          <p className="text-sm leading-relaxed whitespace-pre-wrap">
+            {content}
+          </p>
         </div>
       </motion.div>
     )
   }
 
-  // Assistant message - on the left
+  // Assistant message - ChatGPT style free-flowing text (no background box)
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="flex gap-3 px-4 py-3 bg-muted/30"
+      className="flex gap-3 px-4 py-2 my-2"
     >
       <div className="flex-shrink-0">
         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
@@ -71,8 +69,8 @@ export function ChatMessage({ role, content, isTyping = false, onPersonaChange }
         </div>
       </div>
       <div className="flex-1 space-y-2 overflow-hidden">
-        <div className="prose prose-sm dark:prose-invert max-w-none">
-          <p className="text-sm leading-relaxed whitespace-pre-wrap">
+        <div className="text-base text-gray-100 leading-relaxed max-w-3xl">
+          <p className="whitespace-pre-wrap">
             {displayedContent}
             {isTyping && currentIndex < content.length && (
               <span className="typing-cursor"></span>

@@ -55,20 +55,30 @@ export function ChatInput({
     technical: "🔧",
   }
 
+  const personaDisplayText = {
+    professional: "Professional Abhishek",
+    casual: "Casual Abhishek",
+    technical: "Technical Abhishek",
+  }
+
   const PersonaIcon = personaIcons[currentPersona]
 
   return (
     <div className={`w-full ${centered ? "max-w-3xl mx-auto" : ""}`}>
       <form onSubmit={handleSubmit} className="relative">
-        <Textarea
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Message Abhishek Jose..."
-          disabled={disabled}
-          className="min-h-[56px] max-h-[200px] w-full resize-none rounded-3xl border border-border bg-card px-14 py-4 pr-14 text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-lg glass"
-          rows={1}
-        />
+        <div className="relative rounded-3xl bg-gradient-to-br from-white/25 via-white/15 to-white/5 p-[1px] shadow-[0_8px_32px_0_rgba(0,0,0,0.4),inset_0_1px_0_0_rgba(255,255,255,0.6)] overflow-hidden">
+          {/* Animated glare effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_3s_ease-in-out_infinite] rounded-3xl" />
+          <Textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder={`Message ${personaDisplayText[currentPersona]}...`}
+            disabled={disabled}
+            className="relative min-h-[56px] max-h-[200px] w-full resize-none rounded-3xl border-0 bg-black/30 backdrop-blur-3xl px-14 py-4 pr-14 text-sm focus:outline-none focus:ring-2 focus:ring-white/40 hover:bg-black/20 transition-all duration-300"
+            rows={1}
+          />
+        </div>
         
         {/* Persona Toggle Button */}
         {onPersonaChange && (
@@ -78,7 +88,7 @@ export function ChatInput({
                 type="button"
                 size="icon"
                 variant="ghost"
-                className="absolute bottom-2.5 left-2.5 h-9 w-9 rounded-full hover:bg-accent"
+                className="absolute bottom-3 left-3 h-9 w-9 rounded-full hover:bg-white/10"
                 title={`Current: ${currentPersona}`}
               >
                 <span className="text-lg">{personaLabels[currentPersona]}</span>
@@ -116,14 +126,18 @@ export function ChatInput({
           </DropdownMenu>
         )}
 
-        <Button
-          type="submit"
-          size="icon"
-          disabled={disabled || !message.trim()}
-          className="absolute bottom-2.5 right-2.5 h-9 w-9 rounded-full bg-primary hover:bg-primary/90"
-        >
-          <Send className="h-4 w-4" />
-        </Button>
+        <div className="absolute bottom-3 right-3 h-9 w-9 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 shadow-[0_0_20px_rgba(59,130,246,0.6)] overflow-hidden">
+          {/* Animated glare effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_ease-in-out_infinite]" />
+          <Button
+            type="submit"
+            size="icon"
+            disabled={disabled || !message.trim()}
+            className="relative h-full w-full rounded-full bg-transparent hover:brightness-110 transition-all duration-300 border-0"
+          >
+            <Send className="h-4 w-4" />
+          </Button>
+        </div>
       </form>
     </div>
   )

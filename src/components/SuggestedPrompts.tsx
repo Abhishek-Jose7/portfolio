@@ -25,9 +25,13 @@ export function SuggestedPrompts({ prompts, onSelect }: SuggestedPromptsProps) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.05 }}
             onClick={() => onSelect(prompt)}
-            className="flex-shrink-0 rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground transition-colors whitespace-nowrap glass"
+            className="flex-shrink-0 rounded-full bg-gradient-to-br from-white/25 via-white/15 to-white/5 p-[1px] shadow-[0_4px_16px_0_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(255,255,255,0.6)] hover:shadow-[0_8px_24px_0_rgba(0,0,0,0.35),inset_0_1px_0_0_rgba(255,255,255,0.7)] transition-all duration-300 whitespace-nowrap overflow-hidden relative"
           >
-            {prompt}
+            {/* Animated glare effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_3s_ease-in-out_infinite] rounded-full" style={{ animationDelay: `${index * 0.2}s` }} />
+            <div className="relative rounded-full bg-black/30 backdrop-blur-3xl px-4 py-2 text-sm text-foreground hover:bg-black/20 transition-all duration-300">
+              {prompt}
+            </div>
           </motion.button>
         ))}
       </div>

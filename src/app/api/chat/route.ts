@@ -6,34 +6,78 @@ const conversationHistory = new Map<string, Array<{ role: string; content: strin
 
 type Persona = "professional" | "casual" | "technical"
 
-function applyPersona(content: string, persona: Persona): string {
+function applyPersona(content: string, persona: Persona, intent: string): string {
   switch (persona) {
     case "professional":
-      // More formal, business-oriented
-      return content
-        .replace(/I'm /g, "I am ")
-        .replace(/don't/g, "do not")
-        .replace(/can't/g, "cannot")
-        .replace(/won't/g, "will not")
-        .replace(/!/g, ".")
-        .replace(/😊|😅|🎉|🤫/g, "")
+      // Executive/business-focused: data-driven, results-oriented, strategic
+      return transformToProfessional(content, intent)
     
     case "casual":
-      // Friendly and conversational (default)
-      return content
+      // Friendly conversationalist: approachable, storytelling, relatable
+      return content // Already in casual tone
     
     case "technical":
-      // More technical depth, less fluff
-      const technicalContent = content
-        .replace(/I'm really excited/gi, "I've implemented")
-        .replace(/I'd love to/gi, "I can")
-        .replace(/Great question!/gi, "")
-        .replace(/Honestly,/gi, "")
-      return technicalContent + "\n\n💡 **Technical Details**: For deeper implementation specifics, architecture decisions, or code examples, feel free to ask!"
+      // Engineer-to-engineer: architectural depth, technical precision, code-focused
+      return transformToTechnical(content, intent)
     
     default:
       return content
   }
+}
+
+function transformToProfessional(content: string, intent: string): string {
+  // Remove casual language and emojis
+  let professional = content
+    .replace(/I'm /g, "I am ")
+    .replace(/don't/g, "do not")
+    .replace(/can't/g, "cannot")
+    .replace(/won't/g, "will not")
+    .replace(/😊|😅|🎉|🤫|🚀|🎯|⚡|✨|📚|🔗|☕|💼|🎨|⚙️|☁️|🎓|📅|🐙|📸|💡|🔧|💪|📊|🌈|🧩/g, "")
+    .replace(/!/g, ".")
+    .replace(/Honestly,?/gi, "")
+    .replace(/honestly/gi, "")
+    .replace(/Here's/g, "Here is")
+    .replace(/What's/g, "What is")
+    .replace(/I've/g, "I have")
+    .replace(/Let's/g, "Let us")
+    .replace(/Want to/g, "Would you like to")
+    .replace(/stuff/gi, "solutions")
+    .replace(/things/gi, "projects")
+
+  // Add professional framing based on intent
+  const professionalPrefixes: Record<string, string> = {
+    projects: "From a business perspective, my portfolio demonstrates measurable impact across multiple domains:\n\n",
+    skills: "My technical competencies span the full development lifecycle:\n\n",
+    experience: "My professional background includes progressive responsibility in:\n\n",
+    about: "Executive Summary:\n\n",
+    philosophy: "My development methodology centers on:\n\n",
+  }
+
+  const prefix = professionalPrefixes[intent] || ""
+  
+  return prefix + professional + "\n\nI would be pleased to discuss how these capabilities align with your organizational objectives."
+}
+
+function transformToTechnical(content: string, intent: string): string {
+  // Add technical depth and architectural context
+  let technical = content
+    .replace(/I'm really excited/gi, "I have implemented")
+    .replace(/I'd love to/gi, "I can architect")
+    .replace(/Great question!/gi, "")
+    .replace(/Honestly,?/gi, "")
+    .replace(/stuff/gi, "implementations")
+
+  // Add technical context based on intent
+  const technicalEnhancements: Record<string, string> = {
+    projects: "\n\n**Architecture Highlights:**\n• Microservices with event-driven design patterns\n• Horizontal scaling with load balancing and caching strategies\n• CI/CD pipelines with automated testing and deployment\n• Monitoring and observability with distributed tracing",
+    skills: "\n\n**Technical Depth:**\n• Deep understanding of runtime optimizations and memory management\n• Experience with design patterns: Factory, Observer, Singleton, Repository\n• Proficient in algorithmic complexity analysis and optimization\n• Strong grasp of concurrent programming and async patterns",
+    experience: "\n\n**Technical Leadership:**\n• Code review processes and architectural decision-making\n• System design for scalability, reliability, and maintainability\n• Performance profiling and optimization strategies\n• Technical debt management and refactoring initiatives",
+    philosophy: "\n\n**Engineering Principles:**\n• SOLID principles and clean architecture\n• Test-driven development (TDD) and behavior-driven development (BDD)\n• Continuous integration and deployment automation\n• Documentation-as-code and API-first design",
+  }
+
+  const enhancement = technicalEnhancements[intent] || "\n\n**Technical Notes:**\nFor implementation details, architecture diagrams, code samples, or performance benchmarks, feel free to drill down into specific areas."
+  
+  return technical + enhancement
 }
 
 function detectIntent(message: string): string {
@@ -391,7 +435,7 @@ export async function POST(request: NextRequest) {
     if (message.startsWith("/")) {
       const commandResponse = handleSpecialCommand(message)
       if (commandResponse) {
-        const personaResponse = applyPersona(commandResponse, persona as Persona)
+        const personaResponse = applyPersona(commandResponse, persona as Persona, "general")
         return NextResponse.json({
           response: personaResponse,
           suggestions: [
@@ -415,7 +459,7 @@ export async function POST(request: NextRequest) {
     // Detect intent and generate response
     const intent = detectIntent(message)
     const baseResponse = generateResponse(intent, message)
-    const response = applyPersona(baseResponse, persona as Persona)
+    const response = applyPersona(baseResponse, persona as Persona, intent)
 
     // Add assistant response to history
     history.push({ role: "assistant", content: response })
