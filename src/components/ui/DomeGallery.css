@@ -200,3 +200,34 @@ main.sphere-main {
 .dg-scroll-lock {
   overflow: hidden !important;
 }
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+  .sphere-root {
+    --radius: 400px;
+    --viewer-pad: 24px;
+  }
+  
+  .item__image {
+    inset: 6px;
+  }
+  
+  .edge-fade {
+    height: 80px;
+  }
+  
+  .viewer .enlarge {
+    transition:
+      transform 350ms ease,
+      opacity 350ms ease;
+  }
+  
+  /* Improve touch performance */
+  .sphere,
+  .item,
+  .item__image {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
