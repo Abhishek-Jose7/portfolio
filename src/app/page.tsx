@@ -200,6 +200,11 @@ function PortfolioContent() {
     setMessages([])
     setActiveSection(section === "project" ? `project-${item?.id}` : section)
     setActiveSectionItem(item)
+    
+    // Close sidebar on mobile after selecting section
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setSidebarOpen(false)
+    }
   }
 
   const handleNewChat = () => {
@@ -286,7 +291,7 @@ function PortfolioContent() {
           {/* Section Header */}
           <div className="border-b border-border bg-background/80 backdrop-blur-sm flex-shrink-0 relative z-50">
             <div className="max-w-4xl mx-auto px-4 py-3">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between pl-12 md:pl-0">
                 <h2 className="text-lg font-semibold">Sketches</h2>
                 <Button
                   size="icon"
@@ -313,8 +318,8 @@ function PortfolioContent() {
         {/* Section Header */}
         <div className="border-b border-border bg-background/80 backdrop-blur-sm flex-shrink-0">
           <div className="max-w-4xl mx-auto px-4 py-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold">
+            <div className="flex items-center justify-between pl-12 md:pl-0">
+              <h2 className="text-lg font-semibold truncate pr-2">
                 {sectionType === "project" ? activeSectionItem?.title : 
                  sectionType.charAt(0).toUpperCase() + sectionType.slice(1)}
               </h2>

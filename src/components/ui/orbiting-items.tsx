@@ -63,7 +63,11 @@ export default function OrbitingItems({
   const [outerRotation, setOuterRotation] = useState(0);
 
   // Track rotation angles for keeping icons upright
+  // Use lower frequency on mobile for better performance
   useEffect(() => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const updateInterval = isMobile ? 33 : 16; // 30fps on mobile, 60fps on desktop
+    
     const interval = setInterval(() => {
       if (innerRef.current) {
         const computedStyle = window.getComputedStyle(innerRef.current);
@@ -83,22 +87,22 @@ export default function OrbitingItems({
           setOuterRotation(angle);
         }
       }
-    }, 16);
+    }, updateInterval);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="flex items-center justify-center w-full h-full min-h-[600px]">
-      <div className="relative w-[500px] h-[500px]">
+    <div className="flex items-center justify-center w-full h-full min-h-[400px] md:min-h-[600px]">
+      <div className="relative w-[280px] h-[280px] md:w-[500px] md:h-[500px]">
         {/* Inner circle border */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[300px] h-[300px] rounded-full border-2 border-border/60" />
+          <div className="w-[180px] h-[180px] md:w-[300px] md:h-[300px] rounded-full border-2 border-border/60" />
         </div>
 
         {/* Outer circle border */}
         {outerItems && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[450px] h-[450px] rounded-full border-2 border-border/60" />
+            <div className="w-[250px] h-[250px] md:w-[450px] md:h-[450px] rounded-full border-2 border-border/60" />
           </div>
         )}
 
@@ -129,7 +133,7 @@ export default function OrbitingItems({
               >
                 <div
                   className={cn(
-                    "flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 cursor-pointer transition-all",
+                    "flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 cursor-pointer transition-all",
                     isHovered && "bg-primary/30 scale-110 border-primary/40"
                   )}
                   style={{
@@ -180,7 +184,7 @@ export default function OrbitingItems({
                 >
                   <div
                     className={cn(
-                      "flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 cursor-pointer transition-all",
+                      "flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 cursor-pointer transition-all",
                       isHovered && "bg-primary/30 scale-110 border-primary/40"
                     )}
                     style={{
@@ -206,7 +210,7 @@ export default function OrbitingItems({
 
         {/* Center element */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-2xl">
+          <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-lg md:text-2xl">
             ⚡
           </div>
         </div>

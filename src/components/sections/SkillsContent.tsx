@@ -26,21 +26,21 @@ export function SkillsContent() {
   }
 
   const innerCircleItems = [
-    { icon: <Icons.react className="h-6 w-6 text-primary" />, ...skillMapping.react },
-    { icon: <Icons.nextjs className="h-6 w-6 text-primary" />, ...skillMapping.nextjs },
-    { icon: <Icons.typescript className="h-6 w-6 text-primary" />, ...skillMapping.typescript },
-    { icon: <Icons.tailwind className="h-6 w-6 text-primary" />, ...skillMapping.tailwind },
-    { icon: <Icons.nodejs className="h-6 w-6 text-primary" />, ...skillMapping.nodejs },
-    { icon: <Icons.python className="h-6 w-6 text-primary" />, ...skillMapping.python },
+    { icon: <Icons.react className="h-5 w-5 md:h-6 md:w-6 text-primary" />, ...skillMapping.react },
+    { icon: <Icons.nextjs className="h-5 w-5 md:h-6 md:w-6 text-primary" />, ...skillMapping.nextjs },
+    { icon: <Icons.typescript className="h-5 w-5 md:h-6 md:w-6 text-primary" />, ...skillMapping.typescript },
+    { icon: <Icons.tailwind className="h-5 w-5 md:h-6 md:w-6 text-primary" />, ...skillMapping.tailwind },
+    { icon: <Icons.nodejs className="h-5 w-5 md:h-6 md:w-6 text-primary" />, ...skillMapping.nodejs },
+    { icon: <Icons.python className="h-5 w-5 md:h-6 md:w-6 text-primary" />, ...skillMapping.python },
   ]
 
   const outerCircleItems = [
-    { icon: <Icons.docker className="h-6 w-6 text-primary" />, ...skillMapping.docker },
-    { icon: <Icons.aws className="h-6 w-6 text-primary" />, ...skillMapping.aws },
-    { icon: <Icons.postgresql className="h-6 w-6 text-primary" />, ...skillMapping.postgresql },
-    { icon: <Icons.mongodb className="h-6 w-6 text-primary" />, ...skillMapping.mongodb },
-    { icon: <Icons.git className="h-6 w-6 text-primary" />, ...skillMapping.git },
-    { icon: <Icons.figma className="h-6 w-6 text-primary" />, ...skillMapping.figma },
+    { icon: <Icons.docker className="h-5 w-5 md:h-6 md:w-6 text-primary" />, ...skillMapping.docker },
+    { icon: <Icons.aws className="h-5 w-5 md:h-6 md:w-6 text-primary" />, ...skillMapping.aws },
+    { icon: <Icons.postgresql className="h-5 w-5 md:h-6 md:w-6 text-primary" />, ...skillMapping.postgresql },
+    { icon: <Icons.mongodb className="h-5 w-5 md:h-6 md:w-6 text-primary" />, ...skillMapping.mongodb },
+    { icon: <Icons.git className="h-5 w-5 md:h-6 md:w-6 text-primary" />, ...skillMapping.git },
+    { icon: <Icons.figma className="h-5 w-5 md:h-6 md:w-6 text-primary" />, ...skillMapping.figma },
   ]
 
   return (
