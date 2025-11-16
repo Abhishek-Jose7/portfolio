@@ -44,10 +44,10 @@ export function ChatMessage({ role, content, isTyping = false, onPersonaChange }
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="flex justify-end px-4 py-2 my-2"
+        className="flex justify-end px-3 md:px-4 py-2 my-2"
       >
-        <div className="bg-primary text-white px-4 py-2 rounded-2xl max-w-[70%]">
-          <p className="text-sm leading-relaxed whitespace-pre-wrap">
+        <div className="bg-primary text-white px-3 md:px-4 py-2 rounded-2xl max-w-[85%] md:max-w-[70%]">
+          <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">
             {content}
           </p>
         </div>
@@ -61,16 +61,16 @@ export function ChatMessage({ role, content, isTyping = false, onPersonaChange }
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="flex gap-3 px-4 py-2 my-2"
+      className="flex gap-2 md:gap-3 px-3 md:px-4 py-2 my-2"
     >
       <div className="flex-shrink-0">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-          <Sparkles className="h-4 w-4 text-primary" />
+        <div className="flex h-7 w-7 md:h-8 md:w-8 items-center justify-center rounded-full bg-primary/10">
+          <Sparkles className="h-3.5 w-3.5 md:h-4 md:w-4 text-primary" />
         </div>
       </div>
       <div className="flex-1 space-y-2 overflow-hidden">
-        <div className="text-base text-gray-100 leading-relaxed max-w-3xl">
-          <p className="whitespace-pre-wrap">
+        <div className="text-sm md:text-base text-gray-100 leading-relaxed max-w-3xl">
+          <p className="whitespace-pre-wrap break-words">
             {displayedContent}
             {isTyping && currentIndex < content.length && (
               <span className="typing-cursor"></span>

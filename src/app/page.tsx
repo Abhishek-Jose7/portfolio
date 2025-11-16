@@ -50,7 +50,13 @@ function PortfolioContent() {
   const [activeSectionItem, setActiveSectionItem] = useState<any>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
   const [sessionId] = useState(() => Math.random().toString(36).substring(7))
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    // Start closed on mobile, open on desktop
+    if (typeof window !== 'undefined') {
+      return window.innerWidth >= 768
+    }
+    return true
+  })
   const [chatSessions, setChatSessions] = useState<Array<{id: string, title: string, timestamp: number, messages: Message[]}>>(() => {
     if (typeof window !== 'undefined') {
       const saved = sessionStorage.getItem('chatSessions')
@@ -360,6 +366,29 @@ function PortfolioContent() {
 
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col relative h-screen">
+        {/* Mobile Menu Button - Top Left */}
+        {!sidebarOpen && (
+          <div className="absolute top-4 left-4 z-30 md:hidden">
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={() => setSidebarOpen(true)}
+              className="rounded-full glass h-10 w-10"
+              title="Open Menu"
+            >
+              <motion.div
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.2 }}
+              >
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </motion.div>
+            </Button>
+          </div>
+        )}
+
         {/* Top Bar with Theme Toggle and Actions */}
         <div className="absolute top-4 right-4 z-30 flex gap-2">
           {!isChatEmpty && messages.length > 0 && (
@@ -428,14 +457,14 @@ function PortfolioContent() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="w-full max-w-3xl space-y-8 mx-auto px-4"
+                        className="w-full max-w-3xl space-y-6 md:space-y-8 mx-auto px-4"
                       >
                         {/* Welcome Message */}
                         <div className="text-center space-y-2">
-                          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
                             Hi, I'm {portfolioData.personal.name}
                           </h1>
-                          <p className="text-muted-foreground">
+                          <p className="text-sm md:text-base text-muted-foreground">
                             {portfolioData.personal.title}
                           </p>
                         </div>
@@ -468,8 +497,8 @@ function PortfolioContent() {
                 <div className="pointer-events-none absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-background to-transparent z-10"></div>
                 
                 {/* Scrollable Chat Area */}
-                <div className="flex-1 overflow-y-auto overflow-x-hidden pb-32" ref={scrollRef}>
-                  <div className="max-w-4xl mx-auto py-4 px-4">
+                <div className="flex-1 overflow-y-auto overflow-x-hidden pb-32 md:pb-36" ref={scrollRef}>
+                  <div className="max-w-4xl mx-auto py-3 md:py-4 px-3 md:px-4">
                     {messages.map((message, index) => (
                       <ChatMessage
                         key={index}
@@ -512,16 +541,16 @@ function PortfolioContent() {
 
                 {/* ChatGPT-Style Floating Input Bar */}
                 <div
-                  className="fixed bottom-6 left-0 right-0 flex justify-center z-30 px-4"
+                  className="fixed bottom-4 md:bottom-6 left-0 right-0 flex justify-center z-30 px-3 md:px-4"
                   style={{
                     left: sidebarOpen
                       ? (typeof window !== "undefined" && window.innerWidth < 768 ? "0" : "270px")
-                      : "60px",
+                      : (typeof window !== "undefined" && window.innerWidth < 768 ? "0" : "60px"),
                   }}
                 >
                   <div className="w-full max-w-3xl relative">
                     {/* Suggested Prompts above chat bar */}
-                    <div className="mb-3">
+                    <div className="mb-2 md:mb-3">
                       <SuggestedPrompts
                         prompts={suggestions}
                         onSelect={handleSendMessage}
@@ -530,9 +559,9 @@ function PortfolioContent() {
                     
                     {/* Floating Chat Input */}
                     <div
-                      className="flex items-center gap-3 px-4 py-3
+                      className="flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2.5 md:py-3
                       bg-zinc-900/60 backdrop-blur-xl border border-white/10
-                      rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.45)]
+                      rounded-xl md:rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.45)]
                       transition-all duration-300 hover:shadow-[0_0_25px_rgba(139,92,246,0.25)]"
                     >
                       <ChatInput

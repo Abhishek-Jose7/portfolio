@@ -75,7 +75,7 @@ export function ChatInput({
             onKeyDown={handleKeyDown}
             placeholder={`Message ${personaDisplayText[currentPersona]}...`}
             disabled={disabled}
-            className="relative min-h-[56px] max-h-[200px] w-full resize-none rounded-3xl border-0 bg-black/30 backdrop-blur-3xl px-14 py-4 pr-14 text-sm focus:outline-none focus:ring-2 focus:ring-white/40 hover:bg-black/20 transition-all duration-300"
+            className="relative min-h-[48px] md:min-h-[56px] max-h-[200px] w-full resize-none rounded-2xl md:rounded-3xl border-0 bg-black/30 backdrop-blur-3xl px-12 md:px-14 py-3 md:py-4 pr-12 md:pr-14 text-sm focus:outline-none focus:ring-2 focus:ring-white/40 hover:bg-black/20 transition-all duration-300"
             rows={1}
           />
         </div>
@@ -88,10 +88,10 @@ export function ChatInput({
                 type="button"
                 size="icon"
                 variant="ghost"
-                className="absolute bottom-3 left-3 h-9 w-9 rounded-full hover:bg-white/10"
+                className="absolute bottom-2 md:bottom-3 left-2 md:left-3 h-8 w-8 md:h-9 md:w-9 rounded-full hover:bg-white/10"
                 title={`Current: ${currentPersona}`}
               >
-                <span className="text-lg">{personaLabels[currentPersona]}</span>
+                <span className="text-base md:text-lg">{personaLabels[currentPersona]}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-48">
@@ -126,7 +126,7 @@ export function ChatInput({
           </DropdownMenu>
         )}
 
-        <div className="absolute bottom-3 right-3 h-9 w-9 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 shadow-[0_0_20px_rgba(59,130,246,0.6)] overflow-hidden">
+        <div className="absolute bottom-2 md:bottom-3 right-2 md:right-3 h-8 w-8 md:h-9 md:w-9 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 shadow-[0_0_20px_rgba(59,130,246,0.6)] overflow-hidden">
           {/* Animated glare effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_ease-in-out_infinite]" />
           <Button
@@ -135,7 +135,7 @@ export function ChatInput({
             disabled={disabled || !message.trim()}
             className="relative h-full w-full rounded-full bg-transparent hover:brightness-110 transition-all duration-300 border-0"
           >
-            <Send className="h-4 w-4" />
+            <Send className="h-3.5 w-3.5 md:h-4 md:w-4" />
           </Button>
         </div>
       </form>

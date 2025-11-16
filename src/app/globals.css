@@ -133,6 +133,17 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 14px;
     line-height: 1.5;
+    /* Mobile-friendly touch scrolling */
+    -webkit-overflow-scrolling: touch;
+    /* Prevent zoom on double tap */
+    touch-action: manipulation;
+  }
+
+  /* Improve text rendering on mobile */
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-size-adjust: 100%;
   }
 
   h1, h2, h3, h4, h5, h6 {

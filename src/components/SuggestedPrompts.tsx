@@ -29,7 +29,7 @@ export function SuggestedPrompts({ prompts, onSelect }: SuggestedPromptsProps) {
           >
             {/* Animated glare effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_3s_ease-in-out_infinite] rounded-full" style={{ animationDelay: `${index * 0.2}s` }} />
-            <div className="relative rounded-full bg-black/30 backdrop-blur-3xl px-4 py-2 text-sm text-foreground hover:bg-black/20 transition-all duration-300">
+            <div className="relative rounded-full bg-black/30 backdrop-blur-3xl px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm text-foreground hover:bg-black/20 transition-all duration-300">
               {prompt}
             </div>
           </motion.button>

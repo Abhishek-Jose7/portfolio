@@ -9,75 +9,54 @@ type Persona = "professional" | "casual" | "technical"
 function applyPersona(content: string, persona: Persona, intent: string): string {
   switch (persona) {
     case "professional":
-      // Executive/business-focused: data-driven, results-oriented, strategic
-      return transformToProfessional(content, intent)
-    
-    case "casual":
-      // Friendly conversationalist: approachable, storytelling, relatable
-      return content // Already in casual tone
-    
+      return asProfessionalAbhishek(content, intent)
     case "technical":
-      // Engineer-to-engineer: architectural depth, technical precision, code-focused
-      return transformToTechnical(content, intent)
-    
+      return asTechnicalAbhishek(content, intent)
+    case "casual":
     default:
-      return content
+      return asCasualAbhishek(content, intent)
   }
 }
 
-function transformToProfessional(content: string, intent: string): string {
-  // Remove casual language and emojis
-  let professional = content
-    .replace(/I'm /g, "I am ")
-    .replace(/don't/g, "do not")
-    .replace(/can't/g, "cannot")
-    .replace(/won't/g, "will not")
-    .replace(/😊|😅|🎉|🤫|🚀|🎯|⚡|✨|📚|🔗|☕|💼|🎨|⚙️|☁️|🎓|📅|🐙|📸|💡|🔧|💪|📊|🌈|🧩/g, "")
-    .replace(/!/g, ".")
-    .replace(/Honestly,?/gi, "")
-    .replace(/honestly/gi, "")
-    .replace(/Here's/g, "Here is")
-    .replace(/What's/g, "What is")
-    .replace(/I've/g, "I have")
-    .replace(/Let's/g, "Let us")
-    .replace(/Want to/g, "Would you like to")
-    .replace(/stuff/gi, "solutions")
-    .replace(/things/gi, "projects")
+function asCasualAbhishek(content: string, intent: string): string {
+  const intros = [
+    "Hey! I'm Abhishek 👋",
+    "Yo, Abhishek here 😄",
+    "Hey there — I'm Abhishek!",
+    "What's up! I'm Abhishek 👀",
+  ]
+  const intro = intros[Math.floor(Math.random() * intros.length)]
+  const outro = "\n\nWanna dive into any particular project or topic?"
 
-  // Add professional framing based on intent
-  const professionalPrefixes: Record<string, string> = {
-    projects: "From a business perspective, my portfolio demonstrates measurable impact across multiple domains:\n\n",
-    skills: "My technical competencies span the full development lifecycle:\n\n",
-    experience: "My professional background includes progressive responsibility in:\n\n",
-    about: "Executive Summary:\n\n",
-    philosophy: "My development methodology centers on:\n\n",
-  }
-
-  const prefix = professionalPrefixes[intent] || ""
-  
-  return prefix + professional + "\n\nI would be pleased to discuss how these capabilities align with your organizational objectives."
+  return `${intro}\n\n${content}\n${outro}`
 }
 
-function transformToTechnical(content: string, intent: string): string {
-  // Add technical depth and architectural context
-  let technical = content
-    .replace(/I'm really excited/gi, "I have implemented")
-    .replace(/I'd love to/gi, "I can architect")
-    .replace(/Great question!/gi, "")
-    .replace(/Honestly,?/gi, "")
-    .replace(/stuff/gi, "implementations")
-
-  // Add technical context based on intent
-  const technicalEnhancements: Record<string, string> = {
-    projects: "\n\n**Architecture Highlights:**\n• Microservices with event-driven design patterns\n• Horizontal scaling with load balancing and caching strategies\n• CI/CD pipelines with automated testing and deployment\n• Monitoring and observability with distributed tracing",
-    skills: "\n\n**Technical Depth:**\n• Deep understanding of runtime optimizations and memory management\n• Experience with design patterns: Factory, Observer, Singleton, Repository\n• Proficient in algorithmic complexity analysis and optimization\n• Strong grasp of concurrent programming and async patterns",
-    experience: "\n\n**Technical Leadership:**\n• Code review processes and architectural decision-making\n• System design for scalability, reliability, and maintainability\n• Performance profiling and optimization strategies\n• Technical debt management and refactoring initiatives",
-    philosophy: "\n\n**Engineering Principles:**\n• SOLID principles and clean architecture\n• Test-driven development (TDD) and behavior-driven development (BDD)\n• Continuous integration and deployment automation\n• Documentation-as-code and API-first design",
+function asProfessionalAbhishek(content: string, intent: string): string {
+  const prefixMap: Record<string, string> = {
+    about: "Pleasure to connect. I'm Abhishek Jose, a full-stack developer passionate about scalable systems and meaningful design.\n\n",
+    projects: "Allow me to outline a few key projects that demonstrate measurable outcomes:\n\n",
+    skills: "Here's a quick look at my core technical skill set:\n\n",
+    experience: "Here's an overview of my professional background and areas of impact:\n\n",
+    philosophy: "Here's how I approach software engineering from a strategic perspective:\n\n",
   }
 
-  const enhancement = technicalEnhancements[intent] || "\n\n**Technical Notes:**\nFor implementation details, architecture diagrams, code samples, or performance benchmarks, feel free to drill down into specific areas."
-  
-  return technical + enhancement
+  const prefix = prefixMap[intent] || "Good to connect with you. I'm Abhishek Jose.\n\n"
+  const suffix = "\n\nIf this aligns with your goals or project needs, I'd be glad to discuss further."
+
+  return prefix + content.trim() + suffix
+}
+
+function asTechnicalAbhishek(content: string, intent: string): string {
+  const prefix = "Hey, Abhishek here 👨‍💻 — I love diving deep into system architecture, code design, and optimization.\n\n"
+  const additions: Record<string, string> = {
+    projects: "\n\n**Under the Hood:**\n• Event-driven APIs and microservices\n• Caching, load balancing, and CI/CD pipelines\n• Observability with structured logging and tracing",
+    skills: "\n\n**Tech Focus:**\n• Runtime optimization and performance tuning\n• Design patterns: Factory, Strategy, CQRS\n• Scalable backend architecture with Python & Node",
+    experience: "\n\n**What I Focus On:**\n• Code quality, maintainability, and dev velocity\n• System design for performance and resilience\n• Mentorship and code reviews",
+    philosophy: "\n\n**How I Think About Engineering:**\n• Keep it modular and measurable\n• Simplicity > cleverness\n• Build for scale, but start small",
+  }
+
+  const addition = additions[intent] || ""
+  return prefix + content.trim() + addition
 }
 
 function detectIntent(message: string): string {
