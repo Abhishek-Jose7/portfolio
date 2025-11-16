@@ -12,35 +12,29 @@
   },
   "social": {
     "github": "https://github.com/Abhishek-Jose7",
-    "linkedin": "https://linkedin.com/in/abhishekjose",
-    "instagram": "https://instagram.com/abhishekjose"
+    "linkedin": "https://www.linkedin.com/in/abhishek-jose-906398339/",
+    "instagram": "https://www.instagram.com/abh1sh3.k/"
   },
   "skills": {
     "frontend": [
       { "name": "React", "level": 95, "years": 4 },
       { "name": "Next.js", "level": 90, "years": 3 },
       { "name": "TypeScript", "level": 88, "years": 3 },
-      { "name": "Tailwind CSS", "level": 92, "years": 3 },
-      { "name": "Vue.js", "level": 75, "years": 2 }
+      { "name": "Tailwind CSS", "level": 92, "years": 3 }
     ],
     "backend": [
       { "name": "Node.js", "level": 90, "years": 4 },
-      { "name": "Python", "level": 85, "years": 3 },
+      { "name": "Python", "level": 92, "years": 3 },
       { "name": "PostgreSQL", "level": 82, "years": 3 },
-      { "name": "MongoDB", "level": 80, "years": 3 },
-      { "name": "GraphQL", "level": 78, "years": 2 }
+      { "name": "MongoDB", "level": 80, "years": 3 }
     ],
     "devops": [
-      { "name": "Docker", "level": 85, "years": 3 },
-      { "name": "AWS", "level": 80, "years": 3 },
-      { "name": "CI/CD", "level": 82, "years": 3 },
-      { "name": "Kubernetes", "level": 70, "years": 2 }
+     
     ],
     "tools": [
-      { "name": "Git", "level": 95, "years": 5 },
-      { "name": "VS Code", "level": 98, "years": 5 },
-      { "name": "Figma", "level": 75, "years": 2 },
-      { "name": "Postman", "level": 85, "years": 4 }
+      { "name": "Git", "level": 75, "years": 5 },
+      { "name": "VS Code", "level": 80, "years": 5 }
+      
     ]
   },
   "projects": [

@@ -96,8 +96,6 @@ export function PortfolioSidebar({ onSectionClick, onNewChat, activeSection, isO
     { id: "about", label: "About Me", icon: User },
     { id: "skills", label: "Skills", icon: Award },
     { id: "experience", label: "Experience", icon: Briefcase },
-    { id: "education", label: "Education", icon: GraduationCap },
-    { id: "achievements", label: "Achievements", icon: Trophy },
     { id: "sketches", label: "Sketches", icon: Palette },
     { id: "contact", label: "Contact", icon: Mail },
   ]
@@ -240,11 +238,52 @@ export function PortfolioSidebar({ onSectionClick, onNewChat, activeSection, isO
                   transition={{ delay: 0.35, duration: 0.2 }}
                   className="space-y-4 px-4 py-3"
                 >
-                  {/* Projects - Collapsible Folder */}
+                  {/* Sections */}
                   <motion.div
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4, duration: 0.2 }}
+                  >
+                    <div className="mb-2 flex items-center gap-2 px-2">
+                      <MessageSquare className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                      <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                        Explore
+                      </h4>
+                    </div>
+                    <div className="space-y-1">
+                      {sections.map((section, idx) => {
+                        const Icon = section.icon
+                        return (
+                          <motion.div
+                            key={section.id}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.8 + idx * 0.04, duration: 0.2 }}
+                          >
+                            <Button
+                              onClick={() => onSectionClick(section.id)}
+                              variant="ghost"
+                              size="sm"
+                              className={`w-full justify-start gap-2 text-sm h-8 px-2 ${
+                                activeSection === section.id ? "bg-accent" : ""
+                              }`}
+                            >
+                              <Icon className="h-3.5 w-3.5 flex-shrink-0" />
+                              <span className="truncate text-left">{section.label}</span>
+                            </Button>
+                          </motion.div>
+                        )
+                      })}
+                    </div>
+                  </motion.div>
+
+                  <Separator />
+
+                  {/* Projects - Collapsible Folder */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.75, duration: 0.2 }}
                   >
                     <Button
                       onClick={() => setProjectsExpanded(!projectsExpanded)}
@@ -281,14 +320,14 @@ export function PortfolioSidebar({ onSectionClick, onNewChat, activeSection, isO
                           style={{ overflow: "hidden" }}
                         >
                           <div className="space-y-1 pt-1">
-                            {portfolioData.projects.slice(0, 6).map((project, idx) => {
+                            {portfolioData.projects.map((project, idx) => {
                               const ProjectIcon = getProjectIcon(project.category)
                               return (
                                 <motion.div
                                   key={project.id}
                                   initial={{ opacity: 0, x: -10 }}
                                   animate={{ opacity: 1, x: 0 }}
-                                  transition={{ delay: 0.45 + idx * 0.05, duration: 0.2 }}
+                                  transition={{ delay: 0.8 + idx * 0.05, duration: 0.2 }}
                                 >
                                   <Button
                                     onClick={() => onSectionClick("project", project)}
@@ -308,47 +347,6 @@ export function PortfolioSidebar({ onSectionClick, onNewChat, activeSection, isO
                         </motion.div>
                       )}
                     </AnimatePresence>
-                  </motion.div>
-
-                  <Separator />
-
-                  {/* Sections */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.75, duration: 0.2 }}
-                  >
-                    <div className="mb-2 flex items-center gap-2 px-2">
-                      <MessageSquare className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                      <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                        Explore
-                      </h4>
-                    </div>
-                    <div className="space-y-1">
-                      {sections.map((section, idx) => {
-                        const Icon = section.icon
-                        return (
-                          <motion.div
-                            key={section.id}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.8 + idx * 0.04, duration: 0.2 }}
-                          >
-                            <Button
-                              onClick={() => onSectionClick(section.id)}
-                              variant="ghost"
-                              size="sm"
-                              className={`w-full justify-start gap-2 text-sm h-8 px-2 ${
-                                activeSection === section.id ? "bg-accent" : ""
-                              }`}
-                            >
-                              <Icon className="h-3.5 w-3.5 flex-shrink-0" />
-                              <span className="truncate text-left">{section.label}</span>
-                            </Button>
-                          </motion.div>
-                        )
-                      })}
-                    </div>
                   </motion.div>
 
                   {/* Recent Chats */}

@@ -65,7 +65,7 @@ export default function OrbitingItems({
   // Track rotation angles for keeping icons upright
   useEffect(() => {
     const interval = setInterval(() => {
-      if (!innerPaused && innerRef.current) {
+      if (innerRef.current) {
         const computedStyle = window.getComputedStyle(innerRef.current);
         const matrix = computedStyle.transform;
         if (matrix !== 'none') {
@@ -74,7 +74,7 @@ export default function OrbitingItems({
           setInnerRotation(angle);
         }
       }
-      if (!outerPaused && outerRef.current) {
+      if (outerRef.current) {
         const computedStyle = window.getComputedStyle(outerRef.current);
         const matrix = computedStyle.transform;
         if (matrix !== 'none') {
@@ -83,9 +83,9 @@ export default function OrbitingItems({
           setOuterRotation(angle);
         }
       }
-    }, 50);
+    }, 16);
     return () => clearInterval(interval);
-  }, [innerPaused, outerPaused]);
+  }, []);
 
   return (
     <div className="flex items-center justify-center w-full h-full min-h-[600px]">
