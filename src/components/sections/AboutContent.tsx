@@ -128,6 +128,7 @@ export function AboutContent() {
                   src={msg.src} 
                   alt={msg.caption} 
                   className="w-full h-auto"
+                  loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground p-3 text-center italic">{msg.caption}</p>
               </div>

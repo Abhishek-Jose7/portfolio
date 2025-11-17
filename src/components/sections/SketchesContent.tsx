@@ -26,6 +26,7 @@ export function SketchesContent() {
         grayscale={false}
         imageBorderRadius="20px"
         openedImageBorderRadius="20px"
+        loading="lazy"
       />
     </div>
   )

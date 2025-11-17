@@ -53,11 +53,13 @@ export function ExperienceContent() {
               src={images[0]} 
               alt={`${exp.company} workspace`}
               className="w-full h-64 object-cover rounded-lg"
+              loading="lazy"
             />
             <img 
               src={images[1]} 
               alt={`${exp.company} team`}
               className="w-full h-64 object-cover rounded-lg"
+              loading="lazy"
             />
           </div>
 

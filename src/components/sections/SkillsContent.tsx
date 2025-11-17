@@ -44,7 +44,7 @@ export function SkillsContent() {
   ]
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex items-center justify-center w-full">
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col items-center justify-center w-full gap-6">
       {/* Orbiting Items Component */}
       <div className="relative">
         <OrbitingItems
@@ -52,17 +52,61 @@ export function SkillsContent() {
           outerItems={outerCircleItems}
           onItemClick={(item) => setSelectedSkill(item)}
         />
+      </div>
 
-        {/* Skill Stats Modal */}
-        <AnimatePresence>
-          {selectedSkill && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      {/* Skill Stats - Below Component on Mobile */}
+      {selectedSkill && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="md:hidden w-full max-w-sm px-4"
+        >
+          <div className="glass rounded-2xl p-6 relative">
+            <button
               onClick={() => setSelectedSkill(null)}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors"
             >
+              <X className="h-4 w-4" />
+            </button>
+            
+            <div className="space-y-4">
+              <h3 className="text-2xl font-bold">{selectedSkill.name}</h3>
+              
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Proficiency</span>
+                  <span className="text-lg font-semibold text-primary">{selectedSkill.level}%</span>
+                </div>
+                <div className="h-3 bg-muted rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${selectedSkill.level}%` }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="h-full bg-gradient-to-r from-primary to-primary/60"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Experience:</span>
+                <span className="text-lg font-semibold">{selectedSkill.years} years</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Skill Stats Modal - Desktop Only */}
+      <AnimatePresence>
+        {selectedSkill && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="hidden md:flex fixed inset-0 z-50 items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+            onClick={() => setSelectedSkill(null)}
+          >
               <motion.div
                 className="glass rounded-2xl p-6 max-w-md w-full relative"
                 onClick={(e) => e.stopPropagation()}
@@ -98,10 +142,9 @@ export function SkillsContent() {
                   </div>
                 </div>
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   )
 }

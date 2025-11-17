@@ -15,7 +15,7 @@ export function ProjectContent({ project }: { project: any }) {
           <h3 className="text-xl font-semibold mb-4">{project.title}</h3>
           <p className="text-muted-foreground mb-4">{project.description}</p>
           {project.image && (
-            <img src={project.image} alt={project.title} className="w-full rounded-lg mb-4" />
+            <img src={project.image} alt={project.title} className="w-full rounded-lg mb-4" loading="lazy" />
           )}
           <div className="flex flex-wrap gap-2">
             {project.tags?.map((tag: string) => (

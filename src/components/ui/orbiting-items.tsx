@@ -166,7 +166,7 @@ export default function OrbitingItems({
           <div
             ref={outerRef}
             className={cn(
-              "absolute inset-0 animate-[rotate-full_25s] ease-linear direction-reverse repeat-infinite will-change-transform",
+              "absolute inset-0 animate-[rotate-full_45s] ease-linear direction-reverse repeat-infinite will-change-transform",
               {
                 "[animation-play-state:paused]": outerPaused,
               }
