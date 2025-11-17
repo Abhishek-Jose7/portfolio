@@ -55,14 +55,15 @@ export function SkillsContent() {
       </div>
 
       {/* Skill Stats - Below Component on Mobile */}
-      {selectedSkill && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="md:hidden w-full max-w-sm px-4"
-        >
-          <div className="glass rounded-2xl p-6 relative">
+      <AnimatePresence>
+        {selectedSkill && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden w-full max-w-sm px-4"
+          >
+            <div className="glass rounded-2xl p-6 relative">
             <button
               onClick={() => setSelectedSkill(null)}
               className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors"
@@ -95,7 +96,8 @@ export function SkillsContent() {
             </div>
           </div>
         </motion.div>
-      )}
+        )}
+      </AnimatePresence>
 
       {/* Skill Stats Modal - Desktop Only */}
       <AnimatePresence>
