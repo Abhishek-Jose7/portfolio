@@ -55,8 +55,7 @@ export default function OrbitingItems({
   onItemClick,
 }: OrbitingItemsProps) {
   const [hoveredIndex, setHoveredIndex] = useState<{ circle: 'inner' | 'outer', index: number } | null>(null);
-  const [innerPaused, setInnerPaused] = useState(false);
-  const [outerPaused, setOuterPaused] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const innerRef = useRef<HTMLDivElement>(null);
   const outerRef = useRef<HTMLDivElement>(null);
   const [innerRotation, setInnerRotation] = useState(0);
@@ -116,7 +115,7 @@ export default function OrbitingItems({
           className={cn(
             "absolute inset-0 animate-[rotate-full_45s] ease-linear repeat-infinite will-change-transform",
             {
-              "[animation-play-state:paused]": innerPaused,
+              "[animation-play-state:paused]": isPaused,
             }
           )}
           style={{ transform: 'translateZ(0)' }}
@@ -146,11 +145,11 @@ export default function OrbitingItems({
                   }}
                   onMouseEnter={() => {
                     setHoveredIndex({ circle: 'inner', index });
-                    setInnerPaused(true);
+                    setIsPaused(true);
                   }}
                   onMouseLeave={() => {
                     setHoveredIndex(null);
-                    setInnerPaused(false);
+                    setIsPaused(false);
                   }}
                   onClick={() => onItemClick?.(item)}
                 >
@@ -166,9 +165,9 @@ export default function OrbitingItems({
           <div
             ref={outerRef}
             className={cn(
-              "absolute inset-0 animate-[rotate-full_45s] ease-linear direction-reverse repeat-infinite will-change-transform",
+              "absolute inset-0 animate-[rotate-full_45s] ease-linear repeat-infinite will-change-transform direction-[reverse]",
               {
-                "[animation-play-state:paused]": outerPaused,
+                "[animation-play-state:paused]": isPaused,
               }
             )}
             style={{ transform: 'translateZ(0)' }}
@@ -198,11 +197,11 @@ export default function OrbitingItems({
                     }}
                     onMouseEnter={() => {
                       setHoveredIndex({ circle: 'outer', index });
-                      setOuterPaused(true);
+                      setIsPaused(true);
                     }}
                     onMouseLeave={() => {
                       setHoveredIndex(null);
-                      setOuterPaused(false);
+                      setIsPaused(false);
                     }}
                     onClick={() => onItemClick?.(item)}
                   >
