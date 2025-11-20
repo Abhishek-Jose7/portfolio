@@ -88,7 +88,7 @@ export function AboutContent() {
     },
     {
       type: "image",
-      src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=400&fit=crop",
+      src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=400&fit=crop&auto=format",
       caption: "My typical workspace (organized chaos)",
       delay: 1.1
     },

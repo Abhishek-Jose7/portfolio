@@ -178,6 +178,7 @@ export default function DomeGallery({
   const draggingRef = useRef(false);
   const movedRef = useRef(false);
   const inertiaRAF = useRef<number | null>(null);
+  const autoRotateRAF = useRef<number | null>(null);
 
   const openingRef = useRef(false);
   const openStartedAtRef = useRef(0);
@@ -291,16 +292,46 @@ export default function DomeGallery({
     openedImageHeight
   ]);
 
-  useEffect(() => {
-    applyTransform(rotationRef.current.x, rotationRef.current.y);
-  }, []);
-
   const stopInertia = useCallback(() => {
     if (inertiaRAF.current) {
       cancelAnimationFrame(inertiaRAF.current);
       inertiaRAF.current = null;
     }
   }, []);
+
+  const stopAutoRotate = useCallback(() => {
+    if (autoRotateRAF.current) {
+      cancelAnimationFrame(autoRotateRAF.current);
+      autoRotateRAF.current = null;
+    }
+  }, []);
+
+  const startAutoRotate = useCallback(() => {
+    stopAutoRotate();
+    
+    const rotationSpeed = 0.015; // Extremely slow rotation (degrees per frame)
+    
+    const step = () => {
+      // Only rotate if not dragging and not viewing an enlarged image
+      if (!draggingRef.current && !focusedElRef.current) {
+        const nextY = wrapAngleSigned(rotationRef.current.y + rotationSpeed);
+        rotationRef.current = { x: rotationRef.current.x, y: nextY };
+        applyTransform(rotationRef.current.x, nextY);
+      }
+      autoRotateRAF.current = requestAnimationFrame(step);
+    };
+    
+    autoRotateRAF.current = requestAnimationFrame(step);
+  }, [stopAutoRotate]);
+
+  useEffect(() => {
+    applyTransform(rotationRef.current.x, rotationRef.current.y);
+    startAutoRotate();
+    
+    return () => {
+      stopAutoRotate();
+    };
+  }, [startAutoRotate, stopAutoRotate]);
 
   const startInertia = useCallback(
     (vx: number, vy: number) => {
@@ -319,10 +350,12 @@ export default function DomeGallery({
         vY *= frictionMul;
         if (Math.abs(vX) < stopThreshold && Math.abs(vY) < stopThreshold) {
           inertiaRAF.current = null;
+          startAutoRotate(); // Resume auto-rotation when inertia ends
           return;
         }
         if (++frames > maxFrames) {
           inertiaRAF.current = null;
+          startAutoRotate(); // Resume auto-rotation when inertia ends
           return;
         }
         const nextX = clamp(rotationRef.current.x - vY / 200, -maxVerticalRotationDeg, maxVerticalRotationDeg);
@@ -334,7 +367,7 @@ export default function DomeGallery({
       stopInertia();
       inertiaRAF.current = requestAnimationFrame(step);
     },
-    [dragDampening, maxVerticalRotationDeg, stopInertia]
+    [dragDampening, maxVerticalRotationDeg, stopInertia, startAutoRotate]
   );
 
   useGesture(
@@ -342,6 +375,7 @@ export default function DomeGallery({
       onDragStart: ({ event }) => {
         if (focusedElRef.current) return;
         stopInertia();
+        stopAutoRotate();
         const evt = event as PointerEvent;
         draggingRef.current = true;
         movedRef.current = false;
@@ -388,6 +422,9 @@ export default function DomeGallery({
 
           if (Math.abs(vx) > 0.005 || Math.abs(vy) > 0.005) {
             startInertia(vx, vy);
+          } else {
+            // Resume auto-rotation if no inertia
+            startAutoRotate();
           }
 
           if (movedRef.current) lastDragEndAt.current = performance.now();

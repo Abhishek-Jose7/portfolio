@@ -1,13 +1,13 @@
 {
   "personal": {
     "name": "Abhishek Jose",
-    "title": "Full Stack Developer",
-    "tagline": "Building scalable web applications with modern technologies",
-    "bio": "I'm a passionate full-stack developer crafting elegant solutions to complex problems. I specialize in React, Next.js, Node.js, and machine learning. I love turning ideas into reality through clean code and thoughtful design.",
-    "location": "Seawoods, Navi Mumbai",
+    "title": "Computer Engineering Student & Developer",
+    "tagline": "Building innovative solutions with modern web technologies and AI",
+    "bio": "I'm a 19-year-old computer engineering student passionate about crafting elegant solutions to real-world problems. I specialize in React, Next.js, Python, and AI/ML. Currently studying at Fr. Conceicao Rodrigues College of Engineering and building impactful projects that make a difference.",
+    "location": "Bandra, Mumbai",
     "email": "abhishekjose780@gmail.com",
     "phone": "7738969557",
-    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&auto=format",
     "resumeUrl": "/resume.pdf"
   },
   "social": {
@@ -45,7 +45,7 @@
     "longDescription": "A smart web app that helps groups decide where to hang out by analyzing location midpoints, budgets, and vibe preferences. The system uses clustering algorithms, Google Maps APIs, and machine learning to recommend personalized hangout plans. It supports group creation, live voting, and collaborative plan editing.",
     "category": "AI / Web App",
     "tags": ["Python", "Flask", "JavaScript", "Google Maps API", "ML", "HTML", "CSS"],
-    "image": "https://images.unsplash.com/photo-1515169067865-5387ec356754?w=800&h=500&fit=crop",
+    "image": "https://images.unsplash.com/photo-1515169067865-5387ec356754?w=800&h=500&fit=crop&auto=format",
     "metrics": {
       "users": "300+",
       "accuracy": "85%",
@@ -67,7 +67,7 @@
     "longDescription": "Built a Flask API-powered mobile application that uses ML models to predict possible health conditions from user symptoms. Features include symptom tracking, health recommendations, and integration with wearable data for continuous insights.",
     "category": "Healthcare / AI",
     "tags": ["Python", "Flask", "TensorFlow", "React Native", "SQLite"],
-    "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop",
+    "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop&auto=format",
     "metrics": {
       "accuracy": "90%",
       "users": "150+ testers",
@@ -88,7 +88,7 @@
     "longDescription": "Developed and maintained the official GDSC CRCE website featuring event highlights, project showcases, and member profiles. The site integrates animations, reusable components, and modern design principles using Next.js and Tailwind CSS.",
     "category": "Web Development / Club Management",
     "tags": ["Next.js", "React", "Tailwind CSS", "JavaScript", "Framer Motion"],
-    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=500&fit=crop",
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=500&fit=crop&auto=format",
     "metrics": {
       "visitors": "3,000+ monthly",
       "eventsListed": "20+",
@@ -109,7 +109,7 @@
     "longDescription": "Designed and developed the official Bit N Build hackathon website hosted by GDSC CRCE. The site supports registration, real-time event tracking, and team showcase pages with a vibrant, modern aesthetic built on Next.js.",
     "category": "Event Website / Hackathon",
     "tags": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js"],
-    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=500&fit=crop",
+    "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop&auto=format",
     "metrics": {
       "participants": "500+",
       "teamsRegistered": "100+",
@@ -130,7 +130,7 @@
     "longDescription": "Redesigning the Fr. CRCE official website from scratch to create a modern, responsive, and accessible experience for students and faculty. The platform focuses on structured content management, dynamic news sections, and interactive student resources.",
     "category": "Web Development / College Project",
     "tags": ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
-    "image": "https://images.unsplash.com/photo-1550439062-609e1531270e?w=800&h=500&fit=crop",
+    "image": "https://images.unsplash.com/photo-1550439062-609e1531270e?w=800&h=500&fit=crop&auto=format",
     "metrics": {
       "progress": "In Development",
       "targetLaunch": "2026",
@@ -150,7 +150,7 @@
     "longDescription": "Developed an AI-powered visual assistant that uses computer vision and NLP to describe scenes, identify objects, and assist visually impaired users. Built with TensorFlow and Flask, the assistant processes camera input, recognizes objects, and narrates descriptions using speech synthesis.",
     "category": "AI / Accessibility",
     "tags": ["Python", "Flask", "TensorFlow", "OpenCV", "Speech Synthesis"],
-    "image": "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?w=800&h=500&fit=crop",
+    "image": "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?w=800&h=500&fit=crop&auto=format",
     "metrics": {
       "accuracy": "93%",
       "responseTime": "<1s",
@@ -172,7 +172,7 @@
     "longDescription": "A complete financial management ecosystem with an AI chatbot and interactive dashboard. The bot tracks spending, forecasts savings, and offers automated investment insights. Built using Flask, Pandas, and Scikit-learn, it integrates with email and Telegram for smart notifications.",
     "category": "Finance / AI",
     "tags": ["Flask", "Python", "Pandas", "Scikit-learn", "HTML", "JavaScript", "Telegram API"],
-    "image": "https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=800&h=500&fit=crop",
+    "image": "https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=800&h=500&fit=crop&auto=format",
     "metrics": {
       "users": "200+",
       "predictionAccuracy": "91%",
@@ -194,7 +194,7 @@
     "longDescription": "EduSponsor+ (Sponzy) is a full-stack web platform built with Flask, React, and PostgreSQL that bridges student-led events with potential sponsors. It supports profile creation, event management, direct sponsor communication, analytics, and payment tracking using Razorpay. Includes AI-powered sponsor matching and collaboration tools.",
     "category": "Web / Sponsorship / AI",
     "tags": ["Flask", "React", "PostgreSQL", "Razorpay API", "WebSockets", "AI Matching"],
-    "image": "https://images.unsplash.com/photo-1532619675605-1ede6e4e9400?w=800&h=500&fit=crop",
+    "image": "https://images.unsplash.com/photo-1532619675605-1ede6e4e9400?w=800&h=500&fit=crop&auto=format",
     "metrics": {
       "events": "100+ managed",
       "users": "500+",
@@ -216,7 +216,7 @@
     "longDescription": "An accessibility-focused job platform built using Flask and HTML/CSS that connects job seekers with inclusive companies. The system integrates accessibility filters, company reviews, and skill-based recommendations. It also includes a resume builder and onboarding assistant tailored for each user’s abilities.",
     "category": "Social Impact / AI",
     "tags": ["Flask", "Python", "SQLite", "Accessibility", "HTML", "CSS"],
-    "image": "https://images.unsplash.com/photo-1573496799515-eebbb63814f2?w=800&h=500&fit=crop",
+    "image": "https://images.unsplash.com/photo-1573496799515-eebbb63814f2?w=800&h=500&fit=crop&auto=format",
     "metrics": {
       "users": "500+ beta testers",
       "uptime": "99%",
@@ -292,15 +292,18 @@
   "education": [
     {
       "id": "1",
-      "institution": "Fr. Conceicao Rodrigues College of Engineering",
-      "degree": "Bachelor of Technology",
-      "field": "Computer Science",
+      "institution": "Fr. Conceicao Rodrigues College of Engineering, Bandra",
+      "degree": "Bachelor of Engineering",
+      "field": "Computer Engineering",
       "startDate": "2024-10",
       "endDate": "2028",
       "gpa": "-",
       "honors": [],
-      "description": "Focused on software engineering, algorithms, and machine learning",
+      "description": "Currently pursuing Computer Engineering with focus on software development, algorithms, AI/ML, and full-stack web development",
       "achievements": [
+        "Technical Associate at GDSC CRCE",
+        "Led development of multiple college websites and event platforms",
+        "Active member of technical communities and hackathons"
         ]
     },
     {
@@ -351,7 +354,7 @@
       "name": "Sarah Chen",
       "position": "CTO at TechCorp",
       "company": "TechCorp Inc.",
-      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&auto=format",
       "text": "Abhishek is one of the most talented developers I've worked with. His ability to architect scalable solutions while maintaining code quality is exceptional. He took our AI platform from concept to 50K users in record time.",
       "rating": 5
     },
@@ -360,7 +363,7 @@
       "name": "Michael Rodriguez",
       "position": "Product Manager",
       "company": "DataFlow Solutions",
-      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&auto=format",
       "text": "Working with Abhishek was a game-changer. He doesn't just write code—he solves problems. His analytics dashboard transformed how our clients make decisions. Highly recommended!",
       "rating": 5
     },
@@ -369,7 +372,7 @@
       "name": "Emily Watson",
       "position": "Founder & CEO",
       "company": "StartupHub",
-      "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+      "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&auto=format",
       "text": "Abhishek helped us ship 5 MVPs in under a year. His technical expertise and product thinking made him invaluable to our early-stage clients. A true full-stack engineer.",
       "rating": 5
     }
@@ -404,11 +407,11 @@
     }
   ],
   "stats": {
-    "yearsOfExperience": 5,
-    "projectsCompleted": 50,
-    "coffeeConsumed": 2847,
-    "linesOfCode": 500000,
-    "openSourceContributions": 543,
-    "happyClients": 25
+    "yearsOfExperience": 2,
+    "projectsCompleted": 15,
+    "coffeeConsumed": 365,
+    "linesOfCode": 50000,
+    "openSourceContributions": 20,
+    "happyClients": 10
   }
 }

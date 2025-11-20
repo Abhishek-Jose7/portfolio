@@ -18,8 +18,8 @@ export function ExperienceContent() {
       '/time/20242.jpg',],
     // 2019 - StartupHub Junior Developer
     [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop",
-      "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=500&fit=crop"
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop&auto=format",
+      "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=500&fit=crop&auto=format"
     ]
   ];
 
