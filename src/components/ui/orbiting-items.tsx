@@ -96,8 +96,10 @@ export default function OrbitingItems({
                     animationPlayState: hoveredRing === 'inner' ? 'paused' : 'running'
                   }}
                   onMouseEnter={() => {
-                    setHoveredIndex({ circle: 'inner', index });
-                    setHoveredRing('inner');
+                    if (window.matchMedia("(hover: hover)").matches) {
+                      setHoveredIndex({ circle: 'inner', index });
+                      setHoveredRing('inner');
+                    }
                   }}
                   onMouseLeave={() => {
                     setHoveredIndex(null);
@@ -148,8 +150,10 @@ export default function OrbitingItems({
                       animationPlayState: hoveredRing === 'outer' ? 'paused' : 'running'
                     }}
                     onMouseEnter={() => {
-                      setHoveredIndex({ circle: 'outer', index });
-                      setHoveredRing('outer');
+                      if (window.matchMedia("(hover: hover)").matches) {
+                        setHoveredIndex({ circle: 'outer', index });
+                        setHoveredRing('outer');
+                      }
                     }}
                     onMouseLeave={() => {
                       setHoveredIndex(null);
