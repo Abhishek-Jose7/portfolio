@@ -31,7 +31,7 @@ interface Message {
 }
 
 function PortfolioContent() {
-  const { theme, toggleTheme } = useTheme()
+  const { theme } = useTheme()
   const [messages, setMessages] = useState<Message[]>(() => {
     if (typeof window !== 'undefined') {
       const saved = sessionStorage.getItem('chatMessages')
@@ -423,19 +423,6 @@ function PortfolioContent() {
               </Button>
             </>
           )}
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={toggleTheme}
-            className="rounded-full glass"
-            title="Toggle Theme"
-          >
-            {theme === "dark" ? (
-              <Sun className="h-4 w-4" />
-            ) : (
-              <Moon className="h-4 w-4" />
-            )}
-          </Button>
         </div>
 
         {/* Render Section Content or Chat */}

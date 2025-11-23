@@ -27,10 +27,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light"
-    setTheme(newTheme)
-    localStorage.setItem("theme", newTheme)
-    document.documentElement.classList.toggle("dark", newTheme === "dark")
+    // Theme toggle disabled as per user request
+    setTheme("dark")
+    localStorage.setItem("theme", "dark")
+    document.documentElement.classList.add("dark")
+    document.documentElement.classList.remove("light")
   }
 
   if (!mounted) {

@@ -64,7 +64,7 @@ export default function OrbitingItems({
         {/* Inner circle container - rotates */}
         <div
           className={cn(
-            "absolute inset-0 animate-[spin_40s_linear_infinite]",
+            "absolute inset-0 animate-[spin_40s_linear_infinite] pointer-events-none",
             {
               "[animation-play-state:paused]": hoveredRing === 'inner',
             }
@@ -75,7 +75,7 @@ export default function OrbitingItems({
             return (
               <div
                 key={index}
-                className="absolute"
+                className="absolute pointer-events-auto"
                 style={{
                   ...calculateItemStyle({
                     index,
@@ -116,7 +116,7 @@ export default function OrbitingItems({
         {outerItems && (
           <div
             className={cn(
-              "absolute inset-0 animate-[spin_50s_linear_infinite_reverse]",
+              "absolute inset-0 animate-[spin_50s_linear_infinite_reverse] pointer-events-none",
               {
                 "[animation-play-state:paused]": hoveredRing === 'outer',
               }
@@ -127,7 +127,7 @@ export default function OrbitingItems({
               return (
                 <div
                   key={index}
-                  className="absolute"
+                  className="absolute pointer-events-auto"
                   style={{
                     ...calculateItemStyle({
                       index,
