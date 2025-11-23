@@ -13,6 +13,7 @@ import { SuggestedPrompts } from "@/components/SuggestedPrompts"
 import { EtherealShadow } from "@/components/ui/ethereal-shadow"
 import DecryptedText from "@/components/ui/DecryptedText"
 import { exportChatToPDF } from "@/lib/exportToPdf"
+import { cn } from "@/lib/utils"
 import portfolioData from "@/lib/portfolio-data.json"
 import { ProjectContent } from "@/components/sections/ProjectContent"
 import { AboutContent } from "@/components/sections/AboutContent"
@@ -58,7 +59,7 @@ function PortfolioContent() {
     }
     return true
   })
-  const [chatSessions, setChatSessions] = useState<Array<{id: string, title: string, timestamp: number, messages: Message[]}>>(() => {
+  const [chatSessions, setChatSessions] = useState<Array<{ id: string, title: string, timestamp: number, messages: Message[] }>>(() => {
     if (typeof window !== 'undefined') {
       const saved = sessionStorage.getItem('chatSessions')
       return saved ? JSON.parse(saved) : []
@@ -77,7 +78,7 @@ function PortfolioContent() {
       sessionStorage.setItem('chatMessages', JSON.stringify(messages))
       // Update current chat session
       setChatSessions(prev => {
-        const updated = prev.map(chat => 
+        const updated = prev.map(chat =>
           chat.id === currentChatId ? { ...chat, messages } : chat
         )
         sessionStorage.setItem('chatSessions', JSON.stringify(updated))
@@ -88,7 +89,7 @@ function PortfolioContent() {
 
   useEffect(() => {
     if (activeSection) {
-      const path = activeSection.startsWith('project-') 
+      const path = activeSection.startsWith('project-')
         ? `/${activeSectionItem?.title.toLowerCase().replace(/\s+/g, '-')}`
         : `/${activeSection}`
       window.history.pushState({}, '', path)
@@ -99,7 +100,7 @@ function PortfolioContent() {
 
   const handleSendMessage = async (message: string) => {
     const userMessage: Message = { role: "user", content: message }
-    
+
     // Create new chat session if this is the first message
     if (!currentChatId && messages.length === 0) {
       const newChatId = `chat_${Date.now()}_${Math.random().toString(36).substring(7)}`
@@ -117,7 +118,7 @@ function PortfolioContent() {
       })
       setCurrentChatId(newChatId)
     }
-    
+
     setMessages((prev) => [...prev, userMessage])
     setIsLoading(true)
 
@@ -137,7 +138,7 @@ function PortfolioContent() {
       }
 
       setMessages((prev) => [...prev, assistantMessage])
-      
+
       if (data.suggestions) {
         setSuggestions(data.suggestions)
       }
@@ -155,7 +156,7 @@ function PortfolioContent() {
 
   const handlePersonaChange = async (persona: "professional" | "casual" | "technical") => {
     setCurrentPersona(persona)
-    
+
     // Get the last assistant message
     const lastAssistantMessage = [...messages].reverse().find(m => m.role === "assistant")
     if (!lastAssistantMessage) return
@@ -166,7 +167,7 @@ function PortfolioContent() {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           message: messages[messages.length - 2]?.content || "Tell me about yourself",
           sessionId,
           persona,
@@ -201,7 +202,7 @@ function PortfolioContent() {
     setMessages([])
     setActiveSection(section === "project" ? `project-${item?.id}` : section)
     setActiveSectionItem(item)
-    
+
     // Close sidebar on mobile after selecting section
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
       setSidebarOpen(false)
@@ -238,12 +239,12 @@ function PortfolioContent() {
       setCurrentChatId(chatId)
       setActiveSection(null)
       setActiveSectionItem(null)
-      
+
       // Update sessionStorage with current chat
       if (typeof window !== 'undefined') {
         sessionStorage.setItem('chatMessages', JSON.stringify(loadedMessages))
       }
-      
+
       // Close sidebar on mobile after loading chat
       if (window.innerWidth < 768) {
         setSidebarOpen(false)
@@ -321,8 +322,8 @@ function PortfolioContent() {
           <div className="max-w-4xl mx-auto px-4 py-3">
             <div className="flex items-center justify-between pl-12 md:pl-0">
               <h2 className="text-lg font-semibold truncate pr-2">
-                {sectionType === "project" ? activeSectionItem?.title : 
-                 sectionType.charAt(0).toUpperCase() + sectionType.slice(1)}
+                {sectionType === "project" ? activeSectionItem?.title :
+                  sectionType.charAt(0).toUpperCase() + sectionType.slice(1)}
               </h2>
               <Button
                 size="icon"
@@ -339,7 +340,10 @@ function PortfolioContent() {
         {/* Section Content */}
         <div className="flex-1 overflow-hidden">
           <ScrollArea className="h-full">
-            <div className="max-w-4xl mx-auto px-4 py-6">
+            <div className={cn(
+              "max-w-4xl mx-auto px-4",
+              sectionType === "about" ? "py-0" : "py-6"
+            )}>
               {sectionType === "project" && activeSectionItem && (
                 <ProjectContent project={activeSectionItem} />
               )}
@@ -468,7 +472,7 @@ function PortfolioContent() {
                         {/* Welcome Message */}
                         <div className="text-center space-y-2">
                           <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                            Hi, I'm <DecryptedText 
+                            Hi, I'm <DecryptedText
                               text={portfolioData.personal.name}
                               animateOn="hover"
                               speed={80}
@@ -509,7 +513,7 @@ function PortfolioContent() {
               <div className="flex-1 flex flex-col h-full bg-transparent relative">
                 {/* Fade effect at top */}
                 <div className="pointer-events-none absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-background to-transparent z-10"></div>
-                
+
                 {/* Scrollable Chat Area */}
                 <div className="flex-1 overflow-y-auto overflow-x-hidden pb-32 md:pb-36" ref={scrollRef} style={{ WebkitOverflowScrolling: 'touch' }}>
                   <div className="max-w-4xl mx-auto py-3 md:py-4 px-3 md:px-4">
@@ -549,7 +553,7 @@ function PortfolioContent() {
                     )}
                   </div>
                 </div>
-                
+
                 {/* Fade effect at bottom */}
                 <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10"></div>
 
@@ -570,7 +574,7 @@ function PortfolioContent() {
                         onSelect={handleSendMessage}
                       />
                     </div>
-                    
+
                     {/* Floating Chat Input */}
                     <div
                       className="flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2.5 md:py-3

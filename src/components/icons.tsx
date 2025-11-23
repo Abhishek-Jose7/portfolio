@@ -20,6 +20,10 @@ import {
   SiMongodb,
   SiFirebase,
   SiGit,
+  SiFlask,
+  SiSqlite,
+  SiLinkedin,
+  SiInstagram,
 } from "react-icons/si"
 
 export const Icons = {
@@ -42,4 +46,8 @@ export const Icons = {
   mongodb: SiMongodb,
   firebase: SiFirebase,
   git: SiGit,
+  flask: SiFlask,
+  sqlite: SiSqlite,
+  linkedin: SiLinkedin,
+  instagram: SiInstagram,
 }

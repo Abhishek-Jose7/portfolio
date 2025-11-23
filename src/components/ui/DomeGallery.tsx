@@ -308,9 +308,9 @@ export default function DomeGallery({
 
   const startAutoRotate = useCallback(() => {
     stopAutoRotate();
-    
-    const rotationSpeed = 0.015; // Extremely slow rotation (degrees per frame)
-    
+
+    const rotationSpeed = 0.05; // Faster rotation (degrees per frame)
+
     const step = () => {
       // Only rotate if not dragging and not viewing an enlarged image
       if (!draggingRef.current && !focusedElRef.current) {
@@ -320,14 +320,14 @@ export default function DomeGallery({
       }
       autoRotateRAF.current = requestAnimationFrame(step);
     };
-    
+
     autoRotateRAF.current = requestAnimationFrame(step);
   }, [stopAutoRotate]);
 
   useEffect(() => {
     applyTransform(rotationRef.current.x, rotationRef.current.y);
     startAutoRotate();
-    
+
     return () => {
       stopAutoRotate();
     };
@@ -524,25 +524,25 @@ export default function DomeGallery({
     img.onload = () => {
       setTimeout(() => {
         if (!overlay.parentElement) return;
-        
+
         // Get natural image dimensions
         const naturalWidth = img.naturalWidth;
         const naturalHeight = img.naturalHeight;
-        
+
         // Calculate max dimensions (90% of viewport)
         const maxWidth = window.innerWidth * 0.9;
         const maxHeight = window.innerHeight * 0.9;
-        
+
         // Calculate scaling to fit within max dimensions while preserving aspect ratio
         const scale = Math.min(maxWidth / naturalWidth, maxHeight / naturalHeight, 1);
-        
+
         const finalWidth = naturalWidth * scale;
         const finalHeight = naturalHeight * scale;
-        
+
         // Center the overlay relative to viewport (not main container)
         const centeredLeft = (window.innerWidth - finalWidth) / 2;
         const centeredTop = (window.innerHeight - finalHeight) / 2;
-        
+
         overlay.style.width = `${finalWidth}px`;
         overlay.style.height = `${finalHeight}px`;
         overlay.style.left = `${centeredLeft}px`;

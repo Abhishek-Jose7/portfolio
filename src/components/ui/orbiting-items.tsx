@@ -1,32 +1,21 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface OrbitingItemsProps {
-  /**
-   * The items to orbit around the center of the parent element.
-   */
   items: Array<{
     icon: React.ReactNode;
     name: string;
     level: number;
     years: number;
   }>;
-
-  /**
-   * Additional items for the outer circle.
-   */
   outerItems?: Array<{
     icon: React.ReactNode;
     name: string;
     level: number;
     years: number;
   }>;
-
-  /**
-   * Callback when an item is clicked.
-   */
   onItemClick?: (item: { name: string; level: number; years: number }) => void;
 }
 
@@ -55,44 +44,7 @@ export default function OrbitingItems({
   onItemClick,
 }: OrbitingItemsProps) {
   const [hoveredIndex, setHoveredIndex] = useState<{ circle: 'inner' | 'outer', index: number } | null>(null);
-  const [isPaused, setIsPaused] = useState(false);
-  const innerRef = useRef<HTMLDivElement>(null);
-  const outerRef = useRef<HTMLDivElement>(null);
-  const [innerRotation, setInnerRotation] = useState(0);
-  const [outerRotation, setOuterRotation] = useState(0);
-
-  // Track rotation angles for keeping icons upright
-  // Disabled on mobile for better performance
-  useEffect(() => {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    
-    // Skip tracking on mobile to save CPU
-    if (isMobile) {
-      return;
-    }
-    
-    const interval = setInterval(() => {
-      if (innerRef.current) {
-        const computedStyle = window.getComputedStyle(innerRef.current);
-        const matrix = computedStyle.transform;
-        if (matrix !== 'none') {
-          const values = matrix.split('(')[1].split(')')[0].split(',');
-          const angle = Math.round(Math.atan2(parseFloat(values[1]), parseFloat(values[0])) * (180 / Math.PI));
-          setInnerRotation(angle);
-        }
-      }
-      if (outerRef.current) {
-        const computedStyle = window.getComputedStyle(outerRef.current);
-        const matrix = computedStyle.transform;
-        if (matrix !== 'none') {
-          const values = matrix.split('(')[1].split(')')[0].split(',');
-          const angle = Math.round(Math.atan2(parseFloat(values[1]), parseFloat(values[0])) * (180 / Math.PI));
-          setOuterRotation(angle);
-        }
-      }
-    }, 16);
-    return () => clearInterval(interval);
-  }, []);
+  const [hoveredRing, setHoveredRing] = useState<'inner' | 'outer' | null>(null);
 
   return (
     <div className="flex items-center justify-center w-full h-full min-h-[400px] md:min-h-[600px]">
@@ -109,16 +61,14 @@ export default function OrbitingItems({
           </div>
         )}
 
-        {/* Inner circle - clockwise */}
+        {/* Inner circle container - rotates */}
         <div
-          ref={innerRef}
           className={cn(
-            "absolute inset-0 animate-[rotate-full_45s] ease-linear repeat-infinite will-change-transform",
+            "absolute inset-0 animate-[spin_40s_linear_infinite]",
             {
-              "[animation-play-state:paused]": isPaused,
+              "[animation-play-state:paused]": hoveredRing === 'inner',
             }
           )}
-          style={{ transform: 'translateZ(0)' }}
         >
           {items.map((item, index) => {
             const isHovered = hoveredIndex?.circle === 'inner' && hoveredIndex?.index === index;
@@ -137,19 +87,21 @@ export default function OrbitingItems({
               >
                 <div
                   className={cn(
-                    "flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 cursor-pointer transition-all",
-                    isHovered && "bg-primary/30 scale-110 border-primary/40"
+                    "flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-white/10 cursor-pointer transition-all hover:scale-110 hover:border-white/30 hover:bg-black/60",
+                    isHovered && "scale-125 border-white/40 bg-black/70"
                   )}
+                  // Counter-rotate the icon so it stays upright
                   style={{
-                    transform: `rotate(${-innerRotation}deg)`,
+                    animation: `spin 40s linear infinite reverse`,
+                    animationPlayState: hoveredRing === 'inner' ? 'paused' : 'running'
                   }}
                   onMouseEnter={() => {
                     setHoveredIndex({ circle: 'inner', index });
-                    setIsPaused(true);
+                    setHoveredRing('inner');
                   }}
                   onMouseLeave={() => {
                     setHoveredIndex(null);
-                    setIsPaused(false);
+                    setHoveredRing(null);
                   }}
                   onClick={() => onItemClick?.(item)}
                 >
@@ -160,17 +112,15 @@ export default function OrbitingItems({
           })}
         </div>
 
-        {/* Outer circle - counter-clockwise */}
+        {/* Outer circle container - rotates reverse */}
         {outerItems && (
           <div
-            ref={outerRef}
             className={cn(
-              "absolute inset-0 animate-[rotate-full_45s] ease-linear repeat-infinite will-change-transform direction-[reverse]",
+              "absolute inset-0 animate-[spin_50s_linear_infinite_reverse]",
               {
-                "[animation-play-state:paused]": isPaused,
+                "[animation-play-state:paused]": hoveredRing === 'outer',
               }
             )}
-            style={{ transform: 'translateZ(0)' }}
           >
             {outerItems.map((item, index) => {
               const isHovered = hoveredIndex?.circle === 'outer' && hoveredIndex?.index === index;
@@ -189,19 +139,21 @@ export default function OrbitingItems({
                 >
                   <div
                     className={cn(
-                      "flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 cursor-pointer transition-all",
-                      isHovered && "bg-primary/30 scale-110 border-primary/40"
+                      "flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-white/10 cursor-pointer transition-all hover:scale-110 hover:border-white/30 hover:bg-black/60",
+                      isHovered && "scale-125 border-white/40 bg-black/70"
                     )}
+                    // Counter-rotate (which means rotating forward since container is reverse)
                     style={{
-                      transform: `rotate(${-outerRotation}deg)`,
+                      animation: `spin 50s linear infinite`,
+                      animationPlayState: hoveredRing === 'outer' ? 'paused' : 'running'
                     }}
                     onMouseEnter={() => {
                       setHoveredIndex({ circle: 'outer', index });
-                      setIsPaused(true);
+                      setHoveredRing('outer');
                     }}
                     onMouseLeave={() => {
                       setHoveredIndex(null);
-                      setIsPaused(false);
+                      setHoveredRing(null);
                     }}
                     onClick={() => onItemClick?.(item)}
                   >
@@ -213,11 +165,9 @@ export default function OrbitingItems({
           </div>
         )}
 
-        {/* Center element */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-lg md:text-2xl">
-            ⚡
-          </div>
+        {/* Center element - Empty as requested */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-12 h-12 md:w-20 md:h-20 rounded-full" />
         </div>
       </div>
     </div>

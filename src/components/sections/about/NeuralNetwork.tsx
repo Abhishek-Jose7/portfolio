@@ -9,6 +9,7 @@ interface Node {
     vy: number;
     label: string;
     category: string;
+    id: string;
 }
 
 export function NeuralNetwork() {
@@ -21,73 +22,92 @@ export function NeuralNetwork() {
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
-        // Get device pixel ratio for crisp rendering on high-DPI displays
         const dpr = window.devicePixelRatio || 1;
         const rect = canvas.getBoundingClientRect();
 
-        // Set canvas size accounting for device pixel ratio
         canvas.width = rect.width * dpr;
         canvas.height = rect.height * dpr;
-
-        // Scale context to match
         ctx.scale(dpr, dpr);
 
         let width = rect.width;
         let height = rect.height;
 
-        // Expanded diverse interests
+        // Define interests with relationships
         const interests = [
             // Tech
-            { label: "React", category: "tech" },
-            { label: "Next.js", category: "tech" },
-            { label: "Python", category: "tech" },
-            { label: "AI/ML", category: "tech" },
-            { label: "Three.js", category: "tech" },
-            { label: "Node.js", category: "tech" },
-            { label: "TypeScript", category: "tech" },
-            { label: "Docker", category: "tech" },
-            { label: "PostgreSQL", category: "tech" },
-            { label: "AWS", category: "tech" },
+            { id: "react", label: "React", category: "tech" },
+            { id: "nextjs", label: "Next.js", category: "tech" },
+            { id: "typescript", label: "TypeScript", category: "tech" },
+            { id: "python", label: "Python", category: "tech" },
+            { id: "aiml", label: "AI/ML", category: "tech" },
+            { id: "threejs", label: "Three.js", category: "tech" },
+            { id: "nodejs", label: "Node.js", category: "tech" },
+            { id: "docker", label: "Docker", category: "tech" },
+            { id: "postgresql", label: "PostgreSQL", category: "tech" },
+            { id: "aws", label: "AWS", category: "tech" },
             // Science
-            { label: "Astronomy", category: "science" },
-            { label: "Quantum Physics", category: "science" },
-            { label: "Astrophysics", category: "science" },
-            { label: "Cosmology", category: "science" },
-            { label: "Neuroscience", category: "science" },
+            { id: "astronomy", label: "Astronomy", category: "science" },
+            { id: "quantum", label: "Quantum Physics", category: "science" },
+            { id: "astrophysics", label: "Astrophysics", category: "science" },
+            { id: "cosmology", label: "Cosmology", category: "science" },
+            { id: "neuroscience", label: "Neuroscience", category: "science" },
             // Creative
-            { label: "Anime", category: "creative" },
-            { label: "Manga", category: "creative" },
-            { label: "Sci-Fi", category: "creative" },
-            { label: "Gaming", category: "creative" },
-            { label: "Music", category: "creative" },
-            { label: "Digital Art", category: "creative" },
+            { id: "anime", label: "Anime", category: "creative" },
+            { id: "manga", label: "Manga", category: "creative" },
+            { id: "scifi", label: "Sci-Fi", category: "creative" },
+            { id: "gaming", label: "Gaming", category: "creative" },
+            { id: "music", label: "Music", category: "creative" },
+            { id: "digitalart", label: "Digital Art", category: "creative" },
             // Philosophy
-            { label: "Philosophy", category: "philosophy" },
-            { label: "Ethics", category: "philosophy" },
-            { label: "Stoicism", category: "philosophy" },
+            { id: "philosophy", label: "Philosophy", category: "philosophy" },
+            { id: "ethics", label: "Ethics", category: "philosophy" },
+            { id: "stoicism", label: "Stoicism", category: "philosophy" },
         ];
 
-        const nodes: Node[] = [];
-        const connectionDistance = 200;
+        // Define relationships (only related nodes connect)
+        const relationships: Record<string, string[]> = {
+            react: ["nextjs", "typescript", "threejs", "nodejs"],
+            nextjs: ["react", "typescript", "nodejs"],
+            typescript: ["react", "nextjs", "python", "nodejs"],
+            python: ["aiml", "typescript", "postgresql"],
+            aiml: ["python", "neuroscience", "quantum"],
+            threejs: ["react", "digitalart"],
+            nodejs: ["react", "nextjs", "typescript", "postgresql"],
+            docker: ["aws", "nodejs", "postgresql"],
+            postgresql: ["python", "nodejs", "docker"],
+            aws: ["docker", "nodejs"],
+            astronomy: ["astrophysics", "cosmology", "quantum"],
+            quantum: ["astrophysics", "astronomy", "aiml", "philosophy"],
+            astrophysics: ["astronomy", "cosmology", "quantum"],
+            cosmology: ["astronomy", "astrophysics"],
+            neuroscience: ["aiml", "philosophy"],
+            anime: ["manga", "scifi", "gaming"],
+            manga: ["anime", "digitalart"],
+            scifi: ["anime", "astronomy", "quantum", "philosophy"],
+            gaming: ["anime", "music", "digitalart"],
+            music: ["gaming", "philosophy"],
+            digitalart: ["threejs", "manga", "gaming"],
+            philosophy: ["ethics", "stoicism", "quantum", "scifi", "neuroscience"],
+            ethics: ["philosophy", "stoicism", "aiml"],
+            stoicism: ["philosophy", "ethics"],
+        };
 
-        // Initialize nodes
-        interests.forEach((interest) => {
-            nodes.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 0.35,
-                vy: (Math.random() - 0.5) * 0.35,
-                label: interest.label,
-                category: interest.category,
-            });
-        });
+        const nodes: Node[] = interests.map((interest) => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.3,
+            label: interest.label,
+            category: interest.category,
+            id: interest.id,
+        }));
 
         const getCategoryColor = (category: string) => {
             const colors: Record<string, string> = {
-                tech: "rgba(56, 189, 248, 1)", // Bright cyan
-                science: "rgba(168, 85, 247, 1)", // Purple
-                creative: "rgba(236, 72, 153, 1)", // Pink
-                philosophy: "rgba(251, 191, 36, 1)", // Amber
+                tech: "rgba(56, 189, 248, 1)",
+                science: "rgba(168, 85, 247, 1)",
+                creative: "rgba(236, 72, 153, 1)",
+                philosophy: "rgba(251, 191, 36, 1)",
             };
             return colors[category] || "rgba(56, 189, 248, 1)";
         };
@@ -101,29 +121,30 @@ export function NeuralNetwork() {
                 node.x += node.vx;
                 node.y += node.vy;
 
-                // Bounce with padding
                 if (node.x < 70 || node.x > width - 70) node.vx *= -1;
                 if (node.y < 50 || node.y > height - 50) node.vy *= -1;
             });
 
-            // Draw connections
-            nodes.forEach((node, i) => {
-                for (let j = i + 1; j < nodes.length; j++) {
-                    const other = nodes[j];
+            // Draw connections (only between related nodes)
+            nodes.forEach((node) => {
+                const related = relationships[node.id] || [];
+                related.forEach((relatedId) => {
+                    const other = nodes.find((n) => n.id === relatedId);
+                    if (!other) return;
+
                     const dx = node.x - other.x;
                     const dy = node.y - other.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
-                    if (distance < connectionDistance) {
-                        ctx.beginPath();
-                        ctx.moveTo(node.x, node.y);
-                        ctx.lineTo(other.x, other.y);
-                        const opacity = (1 - distance / connectionDistance) * 0.5;
-                        ctx.strokeStyle = `rgba(100, 200, 255, ${opacity})`;
-                        ctx.lineWidth = 1.5;
-                        ctx.stroke();
-                    }
-                }
+                    ctx.beginPath();
+                    ctx.moveTo(node.x, node.y);
+                    ctx.lineTo(other.x, other.y);
+
+                    const opacity = Math.min(0.6, 1 - distance / 400);
+                    ctx.strokeStyle = `rgba(100, 200, 255, ${opacity})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                });
             });
 
             // Draw nodes
@@ -158,7 +179,6 @@ export function NeuralNetwork() {
                 const padding = 6;
                 const labelY = node.y + 20;
 
-                // Label background
                 ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
                 ctx.fillRect(
                     node.x - textWidth / 2 - padding,
@@ -167,7 +187,6 @@ export function NeuralNetwork() {
                     18
                 );
 
-                // Label border
                 ctx.strokeStyle = color.replace('1)', '0.6)');
                 ctx.lineWidth = 1;
                 ctx.strokeRect(
@@ -177,7 +196,6 @@ export function NeuralNetwork() {
                     18
                 );
 
-                // Label text
                 ctx.fillStyle = "#ffffff";
                 ctx.fillText(node.label, node.x, labelY);
             });

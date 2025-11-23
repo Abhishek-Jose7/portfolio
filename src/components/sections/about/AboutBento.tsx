@@ -35,15 +35,6 @@ export function AboutBento() {
 
 const items = [
     {
-        title: "The Network",
-        description: "My universe of interests—from cutting-edge tech and AI to the wonders of space, quantum physics, philosophy, and the art of storytelling through anime and gaming. Each node represents a passion, each connection a synergy.",
-        header: (
-            <NeuralNetwork />
-        ),
-        className: "md:col-span-3",
-        icon: <IconSchool className="h-4 w-4 text-neutral-500" />,
-    },
-    {
         title: "The Engineer",
         description: "I don't just write code; I design systems. My passion lies in building scalable, resilient architectures that stand the test of time. I specialize in full-stack development with a focus on performance and user experience.",
         header: (
@@ -66,7 +57,7 @@ const items = [
                 </div>
             </div>
         ),
-        className: "md:col-span-1",
+        className: "md:col-span-2",
         icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
     },
     {
@@ -90,5 +81,14 @@ const items = [
         ),
         className: "md:col-span-1",
         icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
+    },
+    {
+        title: "The Network",
+        description: "My universe of interests—from cutting-edge tech and AI to the wonders of space, quantum physics, philosophy, and the art of storytelling through anime and gaming. Each node represents a passion, each connection a synergy.",
+        header: (
+            <NeuralNetwork />
+        ),
+        className: "md:col-span-2",
+        icon: <IconSchool className="h-4 w-4 text-neutral-500" />,
     },
 ];

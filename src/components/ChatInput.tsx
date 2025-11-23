@@ -19,9 +19,9 @@ interface ChatInputProps {
   onPersonaChange?: (persona: "professional" | "casual" | "technical") => void
 }
 
-export function ChatInput({ 
-  onSend, 
-  disabled = false, 
+export function ChatInput({
+  onSend,
+  disabled = false,
   centered = false,
   currentPersona = "casual",
   onPersonaChange
@@ -43,12 +43,6 @@ export function ChatInput({
     }
   }
 
-  const personaIcons = {
-    professional: Briefcase,
-    casual: User,
-    technical: Code,
-  }
-
   const personaLabels = {
     professional: "💼",
     casual: "😊",
@@ -61,82 +55,79 @@ export function ChatInput({
     technical: "Technical Abhishek",
   }
 
-  const PersonaIcon = personaIcons[currentPersona]
-
   return (
     <div className={`w-full ${centered ? "max-w-3xl mx-auto" : ""}`}>
-      <form onSubmit={handleSubmit} className="relative">
-        <div className="relative rounded-3xl bg-gradient-to-br from-white/25 via-white/15 to-white/5 p-[1px] shadow-[0_8px_32px_0_rgba(0,0,0,0.4),inset_0_1px_0_0_rgba(255,255,255,0.6)] overflow-hidden">
-          {/* Animated glare effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_3s_ease-in-out_infinite] rounded-3xl" />
-          <Textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder={`Message ${personaDisplayText[currentPersona]}...`}
-            disabled={disabled}
-            className="relative min-h-[48px] md:min-h-[56px] max-h-[200px] w-full resize-none rounded-2xl md:rounded-3xl border-0 bg-black/30 backdrop-blur-3xl px-12 md:px-14 py-3 md:py-4 pr-12 md:pr-14 text-sm focus:outline-none focus:ring-2 focus:ring-white/40 hover:bg-black/20 transition-all duration-300"
-            rows={1}
-          />
-        </div>
-        
-        {/* Persona Toggle Button */}
-        {onPersonaChange && (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                type="button"
-                size="icon"
-                variant="ghost"
-                className="absolute bottom-2 md:bottom-3 left-2 md:left-3 h-8 w-8 md:h-9 md:w-9 rounded-full hover:bg-white/10"
-                title={`Current: ${currentPersona}`}
-              >
-                <span className="text-base md:text-lg">{personaLabels[currentPersona]}</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-48">
-              <DropdownMenuItem onClick={() => onPersonaChange("professional")}>
-                <div className="flex items-center gap-2">
-                  <span>💼</span>
-                  <div className="flex flex-col">
-                    <span className="font-medium">Professional</span>
-                    <span className="text-xs text-muted-foreground">Formal tone</span>
-                  </div>
-                </div>
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => onPersonaChange("casual")}>
-                <div className="flex items-center gap-2">
-                  <span>😊</span>
-                  <div className="flex flex-col">
-                    <span className="font-medium">Casual</span>
-                    <span className="text-xs text-muted-foreground">Friendly tone</span>
-                  </div>
-                </div>
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => onPersonaChange("technical")}>
-                <div className="flex items-center gap-2">
-                  <span>🔧</span>
-                  <div className="flex flex-col">
-                    <span className="font-medium">Technical</span>
-                    <span className="text-xs text-muted-foreground">Deep details</span>
-                  </div>
-                </div>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )}
+      <form onSubmit={handleSubmit} className="relative group">
+        <div className="relative rounded-[2rem] bg-gradient-to-br from-white/25 via-white/15 to-white/5 p-[1px] shadow-[0_4px_16px_0_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(255,255,255,0.6)] transition-all duration-300 hover:shadow-[0_8px_24px_0_rgba(0,0,0,0.35),inset_0_1px_0_0_rgba(255,255,255,0.7)]">
+          <div className="relative rounded-[2rem] bg-black/30 backdrop-blur-3xl w-full h-full">
+            <Textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder={`Ask ${personaDisplayText[currentPersona]} anything...`}
+              disabled={disabled}
+              className="relative min-h-[60px] max-h-[200px] w-full resize-none rounded-[2rem] border-0 bg-transparent px-14 py-4 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/50"
+              rows={1}
+            />
 
-        <div className="absolute bottom-2 md:bottom-3 right-2 md:right-3 h-8 w-8 md:h-9 md:w-9 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 shadow-[0_0_20px_rgba(59,130,246,0.6)] overflow-hidden">
-          {/* Animated glare effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_ease-in-out_infinite]" />
-          <Button
-            type="submit"
-            size="icon"
-            disabled={disabled || !message.trim()}
-            className="relative h-full w-full rounded-full bg-transparent hover:brightness-110 transition-all duration-300 border-0"
-          >
-            <Send className="h-3.5 w-3.5 md:h-4 md:w-4" />
-          </Button>
+            {/* Persona Toggle Button */}
+            {onPersonaChange && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    type="button"
+                    size="icon"
+                    variant="ghost"
+                    className="absolute bottom-3 left-3 h-9 w-9 rounded-full hover:bg-white/10 text-xl transition-transform hover:scale-110"
+                    title={`Current: ${currentPersona}`}
+                  >
+                    {personaLabels[currentPersona]}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-52 p-2 bg-black/90 backdrop-blur-xl border-white/10">
+                  <DropdownMenuItem onClick={() => onPersonaChange("professional")} className="rounded-lg focus:bg-white/10">
+                    <div className="flex items-center gap-3 py-1">
+                      <span className="text-xl">💼</span>
+                      <div className="flex flex-col">
+                        <span className="font-medium">Professional</span>
+                        <span className="text-xs text-muted-foreground">Formal & Business</span>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => onPersonaChange("casual")} className="rounded-lg focus:bg-white/10">
+                    <div className="flex items-center gap-3 py-1">
+                      <span className="text-xl">😊</span>
+                      <div className="flex flex-col">
+                        <span className="font-medium">Casual</span>
+                        <span className="text-xs text-muted-foreground">Friendly & Relaxed</span>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => onPersonaChange("technical")} className="rounded-lg focus:bg-white/10">
+                    <div className="flex items-center gap-3 py-1">
+                      <span className="text-xl">🔧</span>
+                      <div className="flex flex-col">
+                        <span className="font-medium">Technical</span>
+                        <span className="text-xs text-muted-foreground">Deep Dive & Code</span>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+
+            {/* Send Button */}
+            <div className="absolute bottom-3 right-3">
+              <Button
+                type="submit"
+                size="icon"
+                disabled={disabled || !message.trim()}
+                className="h-9 w-9 rounded-full bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/20 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+              >
+                <Send className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
         </div>
       </form>
     </div>
