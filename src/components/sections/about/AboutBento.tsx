@@ -15,19 +15,26 @@ import { KineticPhilosophy } from "./KineticPhilosophy";
 import { NeuralNetwork } from "./NeuralNetwork";
 import { motion } from "framer-motion";
 import { FlippableBentoCard } from "./FlippableBentoCard";
+import CSSBoxDemo from "@/components/fancy/demos/CSSBoxDemo";
 
 export function AboutBento() {
     return (
         <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
             {items.map((item, i) => (
-                <FlippableBentoCard
-                    key={i}
-                    title={item.title}
-                    description={item.description}
-                    header={item.header}
-                    className={item.className}
-                    icon={item.icon}
-                />
+                item.hasCustomRender ? (
+                    <div key={i} className={cn("relative w-full h-full min-h-[6rem]", item.className)}>
+                        {item.header}
+                    </div>
+                ) : (
+                    <FlippableBentoCard
+                        key={i}
+                        title={item.title}
+                        description={item.description}
+                        header={item.header}
+                        className={item.className}
+                        icon={item.icon}
+                    />
+                )
             ))}
         </BentoGrid>
     );
@@ -84,11 +91,14 @@ const items = [
     },
     {
         title: "The Network",
-        description: "My universe of interests—from cutting-edge tech and AI to the wonders of space, quantum physics, philosophy, and the art of storytelling through anime and gaming. Each node represents a passion, each connection a synergy.",
+        description: "",
         header: (
-            <NeuralNetwork />
+            <div className="flex w-full h-full items-center justify-center pt-10">
+                <CSSBoxDemo />
+            </div>
         ),
         className: "md:col-span-2",
         icon: <IconSchool className="h-4 w-4 text-neutral-500" />,
+        hasCustomRender: true,
     },
 ];
