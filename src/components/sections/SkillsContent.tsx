@@ -55,15 +55,15 @@ export function SkillsContent() {
             <div className="relative w-full flex justify-center overflow-hidden min-h-[600px]">
                 {/* Scattered Background Skills - Desktop Only */}
                 <div className="hidden md:block absolute inset-0 pointer-events-none z-10 w-full h-full">
-                    {/* Left Side Skills */}
+                    {/* Left Side Skills (8 Items) */}
 
-                    {/* React */}
+                    {/* React - Top Left */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 0.5, duration: 0.5 }, y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "2%", left: "1%" }}
+                        style={{ top: "2%", left: "2%" }}
                         onClick={() => setSelectedSkill(innerCircleItems[0])}
                     >
                         <div className="opacity-90">{innerCircleItems[0].icon}</div>
@@ -79,7 +79,7 @@ export function SkillsContent() {
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 0.6, duration: 0.5 }, y: { duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.2 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "15%", left: "2%" }}
+                        style={{ top: "14%", left: "1%" }}
                         onClick={() => setSelectedSkill(innerCircleItems[1])}
                     >
                         <div className="opacity-90">{innerCircleItems[1].icon}</div>
@@ -95,7 +95,7 @@ export function SkillsContent() {
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 0.7, duration: 0.5 }, y: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.4 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "28%", left: "1%" }}
+                        style={{ top: "26%", left: "3%" }}
                         onClick={() => setSelectedSkill(innerCircleItems[2])}
                     >
                         <div className="opacity-90">{innerCircleItems[2].icon}</div>
@@ -111,7 +111,7 @@ export function SkillsContent() {
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 0.8, duration: 0.5 }, y: { duration: 3.1, repeat: Infinity, ease: "easeInOut", delay: 0.6 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "42%", left: "3%" }}
+                        style={{ top: "38%", left: "1%" }}
                         onClick={() => setSelectedSkill(innerCircleItems[3])}
                     >
                         <div className="opacity-90">{innerCircleItems[3].icon}</div>
@@ -121,13 +121,13 @@ export function SkillsContent() {
                         </div>
                     </motion.div>
 
-                    {/* Node.js */}
+                    {/* Node.js - Middle Leftmost */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 0.9, duration: 0.5 }, y: { duration: 3.3, repeat: Infinity, ease: "easeInOut", delay: 0.8 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "54%", left: "1%" }}
+                        style={{ top: "50%", left: "2%" }}
                         onClick={() => setSelectedSkill(innerCircleItems[4])}
                     >
                         <div className="opacity-90">{innerCircleItems[4].icon}</div>
@@ -143,7 +143,7 @@ export function SkillsContent() {
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 1.0, duration: 0.5 }, y: { duration: 3.4, repeat: Infinity, ease: "easeInOut", delay: 1.0 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "66%", left: "2%" }}
+                        style={{ top: "64%", left: "1%" }}
                         onClick={() => setSelectedSkill(innerCircleItems[5])}
                     >
                         <div className="opacity-90">{innerCircleItems[5].icon}</div>
@@ -159,7 +159,7 @@ export function SkillsContent() {
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 1.1, duration: 0.5 }, y: { duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 1.2 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "78%", left: "1%" }}
+                        style={{ top: "78%", left: "3%" }}
                         onClick={() => setSelectedSkill(innerCircleItems[6])}
                     >
                         <div className="opacity-90">{innerCircleItems[6].icon}</div>
@@ -169,13 +169,13 @@ export function SkillsContent() {
                         </div>
                     </motion.div>
 
-                    {/* Docker (Moving to left bottom to balance) */}
+                    {/* Docker - Bottom Leftmost */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 1.2, duration: 0.5 }, y: { duration: 3.1, repeat: Infinity, ease: "easeInOut", delay: 1.4 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "90%", left: "3%" }}
+                        style={{ top: "92%", left: "2%" }}
                         onClick={() => setSelectedSkill(outerCircleItems[0])}
                     >
                         <div className="opacity-90">{outerCircleItems[0].icon}</div>
@@ -186,15 +186,15 @@ export function SkillsContent() {
                     </motion.div>
 
 
-                    {/* Right Side Skills */}
+                    {/* Right Side Skills (7 Items) */}
 
-                    {/* Machine Learning */}
+                    {/* Machine Learning - Top Right */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 0.5, duration: 0.5 }, y: { duration: 3.3, repeat: Infinity, ease: "easeInOut", delay: 0.1 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "4%", right: "1%" }}
+                        style={{ top: "3%", right: "2%" }}
                         onClick={() => setSelectedSkill(outerCircleItems[1])}
                     >
                         <div className="opacity-90">{outerCircleItems[1].icon}</div>
@@ -210,7 +210,7 @@ export function SkillsContent() {
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 0.6, duration: 0.5 }, y: { duration: 3.4, repeat: Infinity, ease: "easeInOut", delay: 0.3 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "18%", right: "3%" }}
+                        style={{ top: "16%", right: "1%" }}
                         onClick={() => setSelectedSkill(outerCircleItems[2])}
                     >
                         <div className="opacity-90">{outerCircleItems[2].icon}</div>
@@ -226,7 +226,7 @@ export function SkillsContent() {
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 0.7, duration: 0.5 }, y: { duration: 3.1, repeat: Infinity, ease: "easeInOut", delay: 0.5 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "32%", right: "1%" }}
+                        style={{ top: "30%", right: "3%" }}
                         onClick={() => setSelectedSkill(outerCircleItems[3])}
                     >
                         <div className="opacity-90">{outerCircleItems[3].icon}</div>
@@ -236,13 +236,13 @@ export function SkillsContent() {
                         </div>
                     </motion.div>
 
-                    {/* Git */}
+                    {/* Git - Middle Rightmost */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 0.8, duration: 0.5 }, y: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.7 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "46%", right: "2%" }}
+                        style={{ top: "45%", right: "1%" }}
                         onClick={() => setSelectedSkill(outerCircleItems[4])}
                     >
                         <div className="opacity-90">{outerCircleItems[4].icon}</div>
@@ -258,7 +258,7 @@ export function SkillsContent() {
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 0.9, duration: 0.5 }, y: { duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.9 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "58%", right: "1%" }}
+                        style={{ top: "60%", right: "2%" }}
                         onClick={() => setSelectedSkill(outerCircleItems[5])}
                     >
                         <div className="opacity-90">{outerCircleItems[5].icon}</div>
@@ -274,7 +274,7 @@ export function SkillsContent() {
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 1.0, duration: 0.5 }, y: { duration: 3.0, repeat: Infinity, ease: "easeInOut", delay: 1.1 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "72%", right: "3%" }}
+                        style={{ top: "75%", right: "1%" }}
                         onClick={() => setSelectedSkill(outerCircleItems[6])}
                     >
                         <div className="opacity-90">{outerCircleItems[6].icon}</div>
@@ -284,13 +284,13 @@ export function SkillsContent() {
                         </div>
                     </motion.div>
 
-                    {/* SQLite */}
+                    {/* SQLite - Bottom Rightmost */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.8, y: [0, -10, 0] }}
                         transition={{ opacity: { delay: 1.1, duration: 0.5 }, y: { duration: 3.3, repeat: Infinity, ease: "easeInOut", delay: 1.3 } }}
                         className="absolute flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-black/40 backdrop-blur-md hover:border-white/20 hover:bg-black/60 transition-colors pointer-events-auto cursor-pointer"
-                        style={{ top: "84%", right: "1%" }}
+                        style={{ top: "90%", right: "3%" }}
                         onClick={() => setSelectedSkill(outerCircleItems[7])}
                     >
                         <div className="opacity-90">{outerCircleItems[7].icon}</div>
