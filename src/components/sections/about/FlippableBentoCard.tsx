@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface FlippableBentoCardProps {
@@ -19,35 +17,26 @@ export function FlippableBentoCard({
     header,
     icon,
 }: FlippableBentoCardProps) {
-    const [isFlipped, setIsFlipped] = useState(false);
-
     return (
         <div
             className={cn(
-                "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none dark:bg-black dark:border-white/[0.2] bg-white border border-transparent justify-between flex flex-col space-y-4 cursor-pointer relative h-full hover:z-50",
+                "group/bento [perspective:1000px]",
+                "row-span-1 rounded-xl justify-between flex flex-col space-y-4 cursor-pointer relative h-full hover:z-50",
                 className
             )}
-            onPointerEnter={() => setIsFlipped(true)}
-            onPointerLeave={() => setIsFlipped(false)}
-            style={{ perspective: "1000px" }}
         >
-            <motion.div
-                className="relative w-full h-full"
-                initial={false}
-                animate={{ rotateY: isFlipped ? 180 : 0 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                style={{
-                    transformStyle: "preserve-3d",
-                    pointerEvents: "none" // Prevent interfering with hover events
-                }}
+            <div
+                className={cn(
+                    "relative h-full w-full rounded-2xl transition-all duration-500 [transform-style:preserve-3d]",
+                    "group-hover/bento:[transform:rotateY(180deg)] shadow-input dark:shadow-none bg-white dark:bg-black border border-transparent dark:border-white/[0.2]"
+                )}
             >
-                {/* Front Face - Minimal Title Only */}
+                {/* Front Face */}
                 <div
-                    className="absolute inset-0 w-full h-full bg-white dark:bg-black border border-transparent dark:border-white/[0.2] rounded-xl flex items-center justify-center p-4"
-                    style={{
-                        backfaceVisibility: "hidden",
-                        WebkitBackfaceVisibility: "hidden"
-                    }}
+                    className={cn(
+                        "absolute size-full overflow-hidden rounded-2xl border [backface-visibility:hidden]",
+                        "bg-white dark:bg-black border-transparent dark:border-white/[0.2] flex items-center justify-center p-4",
+                    )}
                 >
                     <div className="text-center">
                         <div className="mb-2 text-neutral-500 dark:text-neutral-400 scale-125">{icon}</div>
@@ -60,14 +49,12 @@ export function FlippableBentoCard({
                     </div>
                 </div>
 
-                {/* Back Face - Rich Content */}
+                {/* Back Face */}
                 <div
-                    className="absolute inset-0 w-full h-full bg-black rounded-xl overflow-hidden border border-white/10"
-                    style={{
-                        backfaceVisibility: "hidden",
-                        WebkitBackfaceVisibility: "hidden",
-                        transform: "rotateY(180deg)"
-                    }}
+                    className={cn(
+                        "absolute h-full w-full overflow-hidden rounded-2xl border bg-black/80 px-0 py-0 text-slate-200 [backface-visibility:hidden]",
+                        "[transform:rotateY(180deg)]"
+                    )}
                 >
                     <div className="flex flex-col h-full">
                         {/* Visual Header (3D/Interactive) */}
@@ -76,14 +63,14 @@ export function FlippableBentoCard({
                         </div>
 
                         {/* Description */}
-                        <div className="p-4 bg-black/80 backdrop-blur-sm border-t border-white/10">
+                        <div className="p-4 bg-black/80 backdrop-blur-sm border-t border-white/10 text-left">
                             <p className="font-sans font-normal text-neutral-300 text-sm leading-relaxed">
                                 {description}
                             </p>
                         </div>
                     </div>
                 </div>
-            </motion.div>
+            </div>
         </div>
     );
 }

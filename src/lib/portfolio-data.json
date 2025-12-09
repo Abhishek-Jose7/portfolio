@@ -80,12 +80,23 @@
         "years": 3
       }
     ],
-    "devops": [],
+    "devops": [
+      {
+        "name": "Docker",
+        "level": 85,
+        "years": 2
+      }
+    ],
     "tools": [
       {
         "name": "Git",
         "level": 75,
         "years": 5
+      },
+      {
+        "name": "Figma",
+        "level": 85,
+        "years": 3
       },
       {
         "name": "VS Code",
