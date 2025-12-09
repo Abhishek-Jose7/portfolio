@@ -131,8 +131,8 @@ const CSSBox = forwardRef<CSSBoxRef, CSSBoxProps>(
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            border: "1px solid rgba(255,255,255,0.2)",
-            backgroundColor: "rgba(255,255,255,0.05)",
+            // border: "1px solid rgba(255,255,255,0.2)",
+            // backgroundColor: "rgba(255,255,255,0.05)",
         };
 
         return (

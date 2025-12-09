@@ -93,7 +93,7 @@ const items = [
         title: "The Network",
         description: "",
         header: (
-            <div className="flex w-full h-full items-center justify-center pt-10">
+            <div className="flex w-full h-full items-center justify-center pt-10 z-50 relative pointer-events-auto">
                 <CSSBoxDemo />
             </div>
         ),
