@@ -47,70 +47,87 @@ const CSSBox = forwardRef<CSSBoxRef, CSSBoxProps>(
         ref
     ) => {
         // Rotation state
-        const [isHovered, setIsHovered] = useState(false);
+        // Hover state removed for continuous spin preference
         const [isDragging, setIsDragging] = useState(false);
 
         // Continuous rotation values
         const rotateX = useMotionValue(-15);
         const rotateY = useMotionValue(15);
 
-        // Refs for drag
+        // Refs for drag and interaction timing
         const prevPointer = useRef({ x: 0, y: 0 });
+        const lastInteractionTime = useRef(0);
 
         // Interaction handling
         const handleMouseMove = (e: React.MouseEvent) => {
-            if (draggable) return;
-
-            // Simple interactive rotation on hover (tilt)
-            const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
-
-            const rotateXValue = ((mouseY - centerY) / centerY) * -30;
-            const rotateYValue = ((mouseX - centerX) / centerX) * 30;
-
-            rotateX.set(rotateXValue);
-            rotateY.set(rotateYValue);
+            // Hover effect removed as per "interactive all the time" + "slant spin" preference
+            // which usually implies constant animation unless managed manually.
+            if (!draggable) {
+                // Simple interactive rotation on hover (tilt) if not draggable
+                const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                const rotateXValue = ((mouseY - centerY) / centerY) * -30;
+                const rotateYValue = ((mouseX - centerX) / centerX) * 30;
+                rotateX.set(rotateXValue);
+                rotateY.set(rotateYValue);
+            }
         };
 
         const handlePointerDown = (e: React.PointerEvent) => {
             if (!draggable) return;
             setIsDragging(true);
+            lastInteractionTime.current = Date.now();
             prevPointer.current = { x: e.clientX, y: e.clientY };
             (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
         };
 
         const handlePointerMove = (e: React.PointerEvent) => {
-            if (!draggable || !isDragging) return;
+            if (!draggable) return;
 
-            const deltaX = e.clientX - prevPointer.current.x;
-            const deltaY = e.clientY - prevPointer.current.y;
+            if (isDragging) {
+                lastInteractionTime.current = Date.now();
+                const deltaX = e.clientX - prevPointer.current.x;
+                const deltaY = e.clientY - prevPointer.current.y;
 
-            prevPointer.current = { x: e.clientX, y: e.clientY };
+                prevPointer.current = { x: e.clientX, y: e.clientY };
 
-            const sensitivity = 0.8;
-            rotateY.set(rotateY.get() + deltaX * sensitivity);
-            rotateX.set(rotateX.get() - deltaY * sensitivity);
+                const sensitivity = 0.8;
+                rotateY.set(rotateY.get() + deltaX * sensitivity);
+                rotateX.set(rotateX.get() - deltaY * sensitivity);
+            }
         };
 
         const handlePointerUp = (e: React.PointerEvent) => {
             if (!draggable) return;
             setIsDragging(false);
+            lastInteractionTime.current = Date.now();
             (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
         };
 
         const handleMouseLeave = () => {
-            if (!draggable) setIsHovered(false);
+            // No-op
         };
 
         // Auto spin logic
         useAnimationFrame((t) => {
-            const isInteracting = draggable ? isDragging : isHovered;
-            if (!isInteracting) {
-                rotateY.set(rotateY.get() + 0.5);
+            if (!draggable) return;
+
+            const timeSinceInteraction = Date.now() - lastInteractionTime.current;
+            const isIdle = !isDragging && timeSinceInteraction > 1500; // 1.5s timeout
+
+            if (isIdle) {
+                // Resume slant spin
+                rotateY.set(rotateY.get() + 0.4);
+
+                // Lerp rotateX to a sine wave for "slant"
+                // target range: -25 to 25 degrees to show all sides
+                const targetX = Math.sin(t / 2000) * 25;
+                const currentX = rotateX.get();
+                // Smoothly interpolate towards target (lerp factor 0.02)
+                rotateX.set(currentX + (targetX - currentX) * 0.02);
             }
         });
 
@@ -137,15 +154,8 @@ const CSSBox = forwardRef<CSSBoxRef, CSSBoxProps>(
             <div
                 style={{ perspective: `${perspective}px`, width, height, touchAction: draggable ? 'none' : 'auto' }}
                 className={`relative ${className} ${draggable ? (isDragging ? 'cursor-grabbing' : 'cursor-grab') : ''}`}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={(e) => {
-                    // If we are dragging, we might leave the element but pointer capture should handle it.
-                    // But for hover effects:
-                    if (!draggable) {
-                        setIsHovered(false);
-                        handleMouseLeave();
-                    }
-                }}
+                // onMouseEnter={() => setIsHovered(true)}
+                // onMouseLeave={...}
                 onMouseMove={handleMouseMove}
                 onPointerDown={handlePointerDown}
                 onPointerMove={handlePointerMove}
