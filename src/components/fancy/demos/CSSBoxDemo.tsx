@@ -17,7 +17,7 @@ export default function CSSBoxDemo() {
     }) => (
         <div className={`flex flex-col ${className || ""}`}>
             {texts.map((text, i) => (
-                <div key={i} className="text-[#0015ff] font-bold tracking-wider text-xl uppercase">
+                <div key={i} className="text-[#0015ff] font-bold tracking-widest text-[28px] leading-none uppercase text-center w-full">
                     {text}
                 </div>
             ))}
@@ -37,37 +37,37 @@ export default function CSSBoxDemo() {
                 front: (
                     <TextFace
                         texts={["YOU CAN", "JUST", "DO THINGS"]}
-                        className="text-right justify-end items-end h-full w-full p-2 select-none"
+                        className="items-center justify-center h-full w-full select-none"
                     />
                 ),
                 back: (
                     <TextFace
                         texts={["MAKE THINGS", "YOU WISH", "EXISTED"]}
-                        className="text-left justify-end h-full w-full p-2 select-none"
+                        className="items-center justify-center h-full w-full select-none"
                     />
                 ),
                 right: (
                     <TextFace
                         texts={["MAKE THINGS", "YOU WISH", "EXISTED"]}
-                        className="text-left justify-end h-full w-full p-2 select-none"
+                        className="items-center justify-center h-full w-full select-none"
                     />
                 ),
                 left: (
                     <TextFace
                         texts={["BREAK", "THINGS", "MOVE", "FAST"]}
-                        className="items-end w-full h-full p-2 select-none"
+                        className="items-center justify-center w-full h-full select-none"
                     />
                 ),
                 top: (
                     <TextFace
                         texts={["YOU CAN", "JUST", "DO THINGS"]}
-                        className="text-right justify-end items-end h-full w-full p-2 select-none"
+                        className="items-center justify-center h-full w-full select-none"
                     />
                 ),
                 bottom: (
                     <TextFace
                         texts={["BREAK", "THINGS", "MOVE", "FAST"]}
-                        className="items-end w-full h-full p-2 select-none"
+                        className="items-center justify-center w-full h-full select-none"
                     />
                 ),
             }}

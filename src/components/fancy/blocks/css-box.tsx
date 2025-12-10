@@ -108,11 +108,9 @@ const CSSBox = forwardRef<CSSBoxRef, CSSBoxProps>(
 
         // Auto spin logic
         useAnimationFrame((t) => {
-            const isInteracting = draggable ? isDragging || isHovered : isHovered;
+            const isInteracting = draggable ? isDragging : isHovered;
             if (!isInteracting) {
                 rotateY.set(rotateY.get() + 0.5);
-                // Gentle swaying on X axis
-                rotateX.set(Math.sin(t / 3000) * 20 - 10);
             }
         });
 
@@ -127,7 +125,7 @@ const CSSBox = forwardRef<CSSBoxRef, CSSBoxProps>(
         // Face styles
         const faceStyle = {
             position: "absolute" as const,
-            backfaceVisibility: "visible" as const,
+            backfaceVisibility: "hidden" as const,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
