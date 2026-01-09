@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Download, Share2, X } from "lucide-react"
+import { Download, Share2, X, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useTheme } from "@/components/ThemeProvider"
@@ -45,22 +45,31 @@ export function PortfolioContent() {
     const [currentPersona, setCurrentPersona] = useState<"professional" | "casual" | "technical">("casual")
     const [suggestions, setSuggestions] = useState([
         "Show me your best work",
-        "Tell me your development philosophy",
+        "Tell me about the Legal Assistant AI",
         "Walk me through your journey",
         "What are your strongest skills?",
-        "Show me your ML projects",
+        "Show me your AI projects",
     ])
     const [activeSection, setActiveSection] = useState<string | null>(null)
     const [activeSectionItem, setActiveSectionItem] = useState<any>(null)
     const scrollRef = useRef<HTMLDivElement>(null)
     const [sessionId] = useState(() => Math.random().toString(36).substring(7))
-    const [sidebarOpen, setSidebarOpen] = useState(() => {
-        // Start closed on mobile, open on desktop
-        if (typeof window !== 'undefined') {
-            return window.innerWidth >= 768
-        }
-        return true
-    })
+    const [sidebarOpen, setSidebarOpen] = useState(true); // Default open, will adjust in effect
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const mobile = window.innerWidth < 768;
+            setIsMobile(mobile);
+            setSidebarOpen(!mobile);
+        };
+
+        // Initial check
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
     const [chatSessions, setChatSessions] = useState<Array<{ id: string, title: string, timestamp: number, messages: Message[] }>>(() => {
         if (typeof window !== 'undefined') {
             const saved = sessionStorage.getItem('chatSessions')
@@ -247,10 +256,10 @@ export function PortfolioContent() {
         setCurrentPersona("casual")
         setSuggestions([
             "Show me your best work",
-            "Tell me your development philosophy",
+            "Tell me about the Kirana Saathi app",
             "Walk me through your journey",
             "What are your strongest skills?",
-            "Show me your ML projects",
+            "Show me your AI projects",
         ])
     }
 
@@ -320,16 +329,33 @@ export function PortfolioContent() {
                     {/* Section Header */}
                     <div className="border-b border-border bg-background/80 backdrop-blur-sm flex-shrink-0 relative z-50">
                         <div className="max-w-4xl mx-auto px-4 py-3">
-                            <div className="flex items-center justify-between pl-12 md:pl-0">
-                                <h2 className="text-lg font-semibold">Sketches</h2>
-                                <Button
-                                    size="icon"
-                                    variant="ghost"
-                                    onClick={handleNewChat}
-                                    className="h-8 w-8"
-                                >
-                                    <X className="h-4 w-4" />
-                                </Button>
+                            <div className="flex items-center justify-center md:items-center md:justify-between relative">
+                                {/* Mobile Hamburger - Only inside section header on mobile */}
+                                {!sidebarOpen && (
+                                    <div className="absolute left-0 md:hidden flex items-center h-full">
+                                        <Button
+                                            size="icon"
+                                            variant="ghost"
+                                            onClick={() => setSidebarOpen(true)}
+                                            className="h-8 w-8 rounded-full"
+                                        >
+                                            <Menu className="h-4 w-4" />
+                                        </Button>
+                                    </div>
+                                )}
+
+                                <h2 className="text-lg font-semibold truncate px-10 md:px-0">Sketches</h2>
+
+                                <div className="absolute right-0 flex items-center h-full">
+                                    <Button
+                                        size="icon"
+                                        variant="ghost"
+                                        onClick={handleNewChat}
+                                        className="h-8 w-8 rounded-full"
+                                    >
+                                        <X className="h-4 w-4" />
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -347,19 +373,36 @@ export function PortfolioContent() {
                 {/* Section Header */}
                 <div className="border-b border-border bg-background/80 backdrop-blur-sm flex-shrink-0">
                     <div className="max-w-4xl mx-auto px-4 py-3">
-                        <div className="flex items-center justify-between pl-12 md:pl-0">
-                            <h2 className="text-lg font-semibold truncate pr-2">
+                        <div className="flex items-center justify-center md:items-center md:justify-between relative">
+                            {/* Mobile Hamburger - Only inside section header on mobile */}
+                            {!sidebarOpen && (
+                                <div className="absolute left-0 md:hidden flex items-center h-full">
+                                    <Button
+                                        size="icon"
+                                        variant="ghost"
+                                        onClick={() => setSidebarOpen(true)}
+                                        className="h-8 w-8 rounded-full"
+                                    >
+                                        <Menu className="h-4 w-4" />
+                                    </Button>
+                                </div>
+                            )}
+
+                            <h2 className="text-lg font-semibold truncate px-10 md:px-0">
                                 {sectionType === "project" ? activeSectionItem?.title :
                                     sectionType.charAt(0).toUpperCase() + sectionType.slice(1)}
                             </h2>
-                            <Button
-                                size="icon"
-                                variant="ghost"
-                                onClick={handleNewChat}
-                                className="h-8 w-8"
-                            >
-                                <X className="h-4 w-4" />
-                            </Button>
+
+                            <div className="absolute right-0 flex items-center h-full">
+                                <Button
+                                    size="icon"
+                                    variant="ghost"
+                                    onClick={handleNewChat}
+                                    className="h-8 w-8 rounded-full"
+                                >
+                                    <X className="h-4 w-4" />
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -369,7 +412,7 @@ export function PortfolioContent() {
                     <ScrollArea className="h-full">
                         <div className={cn(
                             "max-w-4xl mx-auto px-4",
-                            sectionType === "about" ? "py-0" : "py-6"
+                            sectionType === "about" ? "py-6" : "py-6"
                         )}>
                             {sectionType === "project" && activeSectionItem && (
                                 <ProjectContent project={activeSectionItem} />
@@ -403,8 +446,8 @@ export function PortfolioContent() {
 
             {/* Main Chat Area */}
             <div className="flex-1 flex flex-col relative h-screen">
-                {/* Mobile Menu Button - Top Left */}
-                {!sidebarOpen && (
+                {/* Floating Mobile Menu Button - Only show when NO section is active */}
+                {!sidebarOpen && !activeSection && (
                     <div className="absolute top-4 left-4 z-30 md:hidden">
                         <Button
                             size="icon"
@@ -463,20 +506,33 @@ export function PortfolioContent() {
                             <div className="flex-1 flex flex-col items-center justify-center px-4 relative">
                                 {/* Ethereal Shadow Background - Full Screen */}
                                 <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15), transparent 70%)' }}>
-                                    <EtherealShadow
-                                        sizing="stretch"
-                                        color="rgba(139, 92, 246, 0.8)"
-                                        animation={{
-                                            scale: typeof window !== 'undefined' && window.innerWidth < 768 ? 0 : 80,
-                                            speed: typeof window !== 'undefined' && window.innerWidth < 768 ? 0 : 95
-                                        }}
-                                        noise={{
-                                            opacity: typeof window !== 'undefined' && window.innerWidth < 768 ? 0 : 50,
-                                            scale: 1.5
-                                        }}
-                                    >
-                                        {/* Content */}
-                                        <div className="flex items-center justify-center h-full">
+                                    {isMobile ? (
+                                        <div className="absolute inset-0 overflow-hidden">
+                                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] aspect-square rounded-full opacity-20"
+                                                style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)' }} />
+                                            <div className="absolute inset-0 backdrop-blur-[60px]" />
+                                        </div>
+                                    ) : (
+                                        <EtherealShadow
+                                            sizing="stretch"
+                                            color="rgba(139, 92, 246, 0.8)"
+                                            animation={{
+                                                scale: 80,
+                                                speed: 95
+                                            }}
+                                            noise={{
+                                                opacity: 50,
+                                                scale: 1.5
+                                            }}
+                                        >
+                                            <div className="w-full h-full" />
+                                        </EtherealShadow>
+                                    )}
+
+                                    {/* Content Overlay */}
+                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                        {/* Content sits here now */}
+                                        <div className="w-full h-full pointer-events-auto flex items-center justify-center">
                                             <motion.div
                                                 initial={{ opacity: 0, y: 20 }}
                                                 animate={{ opacity: 1, y: 0 }}
@@ -519,7 +575,7 @@ export function PortfolioContent() {
                                                 />
                                             </motion.div>
                                         </div>
-                                    </EtherealShadow>
+                                    </div>
                                 </div>
                             </div>
                         ) : (

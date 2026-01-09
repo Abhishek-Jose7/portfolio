@@ -115,19 +115,16 @@ const CSSBox = forwardRef<CSSBoxRef, CSSBoxProps>(
         useAnimationFrame((t) => {
             if (!draggable) return;
 
-            const timeSinceInteraction = Date.now() - lastInteractionTime.current;
-            const isIdle = !isDragging && timeSinceInteraction > 1500; // 1.5s timeout
-
-            if (isIdle) {
+            // Spin whenever not dragging (no delay)
+            if (!isDragging) {
                 // Resume slant spin
-                rotateY.set(rotateY.get() + 0.4);
+                rotateY.set(rotateY.get() + 0.5);
 
-                // Lerp rotateX to a sine wave for "slant"
-                // target range: -25 to 25 degrees to show all sides
-                const targetX = Math.sin(t / 2000) * 25;
+                // Constant slant for "spin slantly"
+                const targetX = -20;
                 const currentX = rotateX.get();
-                // Smoothly interpolate towards target (lerp factor 0.02)
-                rotateX.set(currentX + (targetX - currentX) * 0.02);
+                // Smoothly interpolate towards target
+                rotateX.set(currentX + (targetX - currentX) * 0.05);
             }
         });
 

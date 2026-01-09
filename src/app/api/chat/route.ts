@@ -61,17 +61,17 @@ function asTechnicalAbhishek(content: string, intent: string): string {
 
 function detectIntent(message: string): string {
   const lowerMessage = message.toLowerCase()
-  
+
   // Greetings
   if (lowerMessage.match(/^(hi|hey|hello|yo|sup|howdy|greetings)[\s!,.]*/)) {
     return "greeting"
   }
-  
+
   // Random/fun questions
   if (lowerMessage.includes("joke") || lowerMessage.includes("funny")) {
     return "joke"
   }
-  
+
   if (lowerMessage.includes("favorite") || lowerMessage.includes("favourite")) {
     if (lowerMessage.includes("food") || lowerMessage.includes("eat")) return "favorite_food"
     if (lowerMessage.includes("color") || lowerMessage.includes("colour")) return "favorite_color"
@@ -79,94 +79,94 @@ function detectIntent(message: string): string {
     if (lowerMessage.includes("music") || lowerMessage.includes("song")) return "favorite_music"
     if (lowerMessage.includes("language") || lowerMessage.includes("programming")) return "favorite_language"
   }
-  
+
   // Personal questions
   if (lowerMessage.includes("age") || lowerMessage.includes("old") || lowerMessage.includes("born")) {
     return "age"
   }
-  
+
   if (lowerMessage.includes("location") || lowerMessage.includes("where") && (lowerMessage.includes("live") || lowerMessage.includes("based") || lowerMessage.includes("from"))) {
     return "location"
   }
-  
+
   if (lowerMessage.includes("hobby") || lowerMessage.includes("hobbies") || lowerMessage.includes("free time")) {
     return "hobbies"
   }
-  
+
   if (lowerMessage.includes("inspiration") || lowerMessage.includes("inspire") || lowerMessage.includes("motivate")) {
     return "inspiration"
   }
-  
+
   // Technical deep dives
   if (lowerMessage.includes("debug") || lowerMessage.includes("bug")) {
     return "debugging"
   }
-  
+
   if (lowerMessage.includes("learn") || lowerMessage.includes("learning")) {
     return "learning"
   }
-  
+
   // Project queries
   if (lowerMessage.includes("project") || lowerMessage.includes("work") || lowerMessage.includes("built") || lowerMessage.includes("portfolio")) {
     return "projects"
   }
-  
+
   // Skills queries
   if (lowerMessage.includes("skill") || lowerMessage.includes("tech") || lowerMessage.includes("language") || lowerMessage.includes("framework")) {
     return "skills"
   }
-  
+
   // Experience queries
   if (lowerMessage.includes("experience") || lowerMessage.includes("worked") || lowerMessage.includes("job") || lowerMessage.includes("company")) {
     return "experience"
   }
-  
+
   // Education queries
   if (lowerMessage.includes("education") || lowerMessage.includes("university") || lowerMessage.includes("degree") || lowerMessage.includes("study")) {
     return "education"
   }
-  
+
   // Achievement queries
   if (lowerMessage.includes("achievement") || lowerMessage.includes("award") || lowerMessage.includes("recognition") || lowerMessage.includes("accomplishment")) {
     return "achievements"
   }
-  
+
   // Timeline queries
   if (lowerMessage.match(/\b(2019|2020|2021|2022|2023|2024|2025)\b/)) {
     return "timeline"
   }
-  
+
   // About queries
   if (lowerMessage.includes("who") || lowerMessage.includes("about") || lowerMessage.includes("yourself")) {
     return "about"
   }
-  
+
   // Philosophy/approach
   if (lowerMessage.includes("philosophy") || lowerMessage.includes("approach") || lowerMessage.includes("methodology") || lowerMessage.includes("think")) {
     return "philosophy"
   }
-  
+
   // Contact
   if (lowerMessage.includes("contact") || lowerMessage.includes("reach") || lowerMessage.includes("email") || lowerMessage.includes("hire") || lowerMessage.includes("available")) {
     return "contact"
   }
-  
+
   // Future plans
   if (lowerMessage.includes("future") || lowerMessage.includes("plan") || lowerMessage.includes("next") || lowerMessage.includes("goal")) {
     return "future"
   }
-  
+
   // Advice
   if (lowerMessage.includes("advice") || lowerMessage.includes("tip") || lowerMessage.includes("recommend") || lowerMessage.includes("suggest")) {
     return "advice"
   }
-  
+
   return "general"
 }
 
 function generateResponse(intent: string, message: string): string {
   const { personal, projects, skills, experience, education, achievements, stats } = portfolioData
-  
+
   switch (intent) {
     case "projects":
       const featuredProjects = projects.filter(p => p.featured)
@@ -322,14 +322,14 @@ I usually reply within 24 hours. What are you working on?`
     case "timeline":
       const yearMatch = message.match(/\b(2019|2020|2021|2022|2023|2024|2025)\b/)
       const year = yearMatch ? yearMatch[0] : null
-      
+
       if (year) {
-        const expInYear = experience.filter(exp => 
-          exp.startDate.startsWith(year) || 
+        const expInYear = experience.filter(exp =>
+          exp.startDate.startsWith(year) ||
           (exp.endDate && exp.endDate.startsWith(year))
         )
         const projectsInYear = projects.filter(p => p.year.toString() === year)
-        
+
         return `Ah, **${year}** - that was a busy year! Here's what I was up to:
 
 ${expInYear.length > 0 ? `**Professionally:**
@@ -697,17 +697,21 @@ It's fully responsive and optimized for performance!`
 
 Let me walk you through my top projects:
 
-**1. AI SaaS Platform** ⭐
-My flagship project - serving 50,000+ users with 99.9% uptime. Built from scratch using Next.js, Python, and TensorFlow.
-Ask: "Tell me about the AI SaaS Platform"
+**1. Legal Assistant AI** ⭐
+An intelligent system designed to support legal professionals by automating routine tasks and providing accurate, context-aware insights.
+Ask: "Tell me about the Legal Assistant AI"
 
-**2. Real-Time Analytics Dashboard** ⭐
-Processing 1M+ events per second with sub-100ms latency. Reduced infrastructure costs by 40%.
-Ask: "How did you build the analytics dashboard?"
+**2. Kirana Saathi App** ⭐
+An AI-powered assistant for local kirana store owners, simplifying inventory tracking, billing, and management.
+Ask: "How did you build the Kirana Saathi app?"
 
-**3. E-Commerce Marketplace** ⭐
-$5M+ in transactions, 10,000+ sellers, 3.2% conversion rate. Complete marketplace solution.
-Ask: "Show me the marketplace project"
+**3. GDSC CRCE Website** ⭐
+The central hub for our Google Developer Student Clubs, featuring event highlights and community integrations.
+Ask: "Show me the GDSC CRCE website"
+
+**4. Smart Virtual Assistant** ⭐
+Accessibility-focused AI that uses computer vision and NLP to describe scenes and assist in daily tasks.
+Ask: "Tell me about the Smart Virtual Assistant"
 
 **Want to dive deeper?**
 Just ask about any project, or try these:
@@ -786,9 +790,9 @@ export async function POST(request: NextRequest) {
 function generateSuggestions(intent: string): string[] {
   const suggestionMap: Record<string, string[]> = {
     projects: [
-      "Tell me about the AI SaaS Platform",
-      "How did you build the analytics dashboard?",
-      "What challenges did you face?",
+      "Tell me about the Legal Assistant AI",
+      "How did you build the Kirana Saathi app?",
+      "Tell me about the GDSC CRCE website",
     ],
     skills: [
       "Compare React vs Vue in your experience",
@@ -801,7 +805,7 @@ function generateSuggestions(intent: string): string[] {
       "How do you mentor junior developers?",
     ],
     education: [
-      "What did you study at Berkeley?",
+      "What are you studying at Fr. CRCE?",
       "Tell me about your certifications",
       "How did education help your career?",
     ],

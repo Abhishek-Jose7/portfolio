@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface OrbitingItemsProps {
@@ -47,28 +48,28 @@ export default function OrbitingItems({
   const [hoveredRing, setHoveredRing] = useState<'inner' | 'outer' | null>(null);
 
   return (
-    <div className="flex items-center justify-center w-full h-full min-h-[400px] md:min-h-[600px]">
-      <div className="relative w-[280px] h-[280px] md:w-[500px] md:h-[500px]">
+    <div className="flex items-center justify-center w-full h-full min-h-[300px] md:min-h-[600px]">
+      <div className="relative w-full max-w-[280px] aspect-square md:w-[500px] md:h-[500px] md:max-w-none">
         {/* Inner circle border */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[180px] h-[180px] md:w-[300px] md:h-[300px] rounded-full border-2 border-border/60" />
+          <div className="w-[60%] h-[60%] rounded-full border-2 border-border/60" />
         </div>
 
         {/* Outer circle border */}
         {outerItems && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[250px] h-[250px] md:w-[450px] md:h-[450px] rounded-full border-2 border-border/60" />
+            <div className="w-[90%] h-[90%] rounded-full border-2 border-border/60" />
           </div>
         )}
 
         {/* Inner circle container - rotates */}
-        <div
-          className={cn(
-            "absolute inset-0 animate-[spin_40s_linear_infinite] pointer-events-none",
-            {
-              "[animation-play-state:paused]": hoveredRing === 'inner',
-            }
-          )}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          style={{
+            animationPlayState: hoveredRing === 'inner' ? 'paused' : 'running'
+          }}
         >
           {items.map((item, index) => {
             const isHovered = hoveredIndex?.circle === 'inner' && hoveredIndex?.index === index;
@@ -85,14 +86,15 @@ export default function OrbitingItems({
                   transform: "translate(-50%, -50%)",
                 }}
               >
-                <div
+                <motion.div
                   className={cn(
                     "flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-white/10 cursor-pointer transition-all hover:scale-110 hover:border-white/30 hover:bg-black/60",
                     isHovered && "scale-125 border-white/40 bg-black/70"
                   )}
                   // Counter-rotate the icon so it stays upright
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
                   style={{
-                    animation: `spin 40s linear infinite reverse`,
                     animationPlayState: hoveredRing === 'inner' ? 'paused' : 'running'
                   }}
                   onMouseEnter={() => {
@@ -108,21 +110,21 @@ export default function OrbitingItems({
                   onClick={() => onItemClick?.(item)}
                 >
                   {item.icon}
-                </div>
+                </motion.div>
               </div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Outer circle container - rotates reverse */}
         {outerItems && (
-          <div
-            className={cn(
-              "absolute inset-0 animate-[spin_50s_linear_infinite_reverse] pointer-events-none",
-              {
-                "[animation-play-state:paused]": hoveredRing === 'outer',
-              }
-            )}
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+            style={{
+              animationPlayState: hoveredRing === 'outer' ? 'paused' : 'running'
+            }}
           >
             {outerItems.map((item, index) => {
               const isHovered = hoveredIndex?.circle === 'outer' && hoveredIndex?.index === index;
@@ -139,14 +141,15 @@ export default function OrbitingItems({
                     transform: "translate(-50%, -50%)",
                   }}
                 >
-                  <div
+                  <motion.div
                     className={cn(
                       "flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-white/10 cursor-pointer transition-all hover:scale-110 hover:border-white/30 hover:bg-black/60",
                       isHovered && "scale-125 border-white/40 bg-black/70"
                     )}
                     // Counter-rotate (which means rotating forward since container is reverse)
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
                     style={{
-                      animation: `spin 50s linear infinite`,
                       animationPlayState: hoveredRing === 'outer' ? 'paused' : 'running'
                     }}
                     onMouseEnter={() => {
@@ -162,11 +165,11 @@ export default function OrbitingItems({
                     onClick={() => onItemClick?.(item)}
                   >
                     {item.icon}
-                  </div>
+                  </motion.div>
                 </div>
               );
             })}
-          </div>
+          </motion.div>
         )}
 
         {/* Center element - Empty as requested */}

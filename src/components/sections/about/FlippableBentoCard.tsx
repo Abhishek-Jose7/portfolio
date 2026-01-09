@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 interface FlippableBentoCardProps {
     className?: string;
@@ -17,6 +18,8 @@ export function FlippableBentoCard({
     header,
     icon,
 }: FlippableBentoCardProps) {
+    const [isFlipped, setIsFlipped] = useState(false);
+
     return (
         <div
             className={cn(
@@ -24,11 +27,13 @@ export function FlippableBentoCard({
                 "row-span-1 rounded-xl justify-between flex flex-col space-y-4 cursor-pointer relative h-full hover:z-50",
                 className
             )}
+            onClick={() => setIsFlipped(!isFlipped)}
         >
             <div
                 className={cn(
-                    "relative h-full w-full rounded-2xl transition-all duration-500 [transform-style:preserve-3d]",
-                    "group-hover/bento:[transform:rotateY(180deg)] shadow-input dark:shadow-none bg-white dark:bg-black border border-transparent dark:border-white/[0.2]"
+                    "relative h-full w-full min-h-[16rem] md:min-h-0 rounded-2xl transition-transform duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] [transform-style:preserve-3d]",
+                    "md:group-hover/bento:[transform:rotateY(180deg)] shadow-input dark:shadow-none bg-white dark:bg-black border border-transparent dark:border-white/[0.2]",
+                    isFlipped && "[transform:rotateY(180deg)]"
                 )}
             >
                 {/* Front Face */}
@@ -43,8 +48,8 @@ export function FlippableBentoCard({
                         <h3 className="text-xl md:text-2xl font-bold text-neutral-800 dark:text-neutral-100 uppercase tracking-widest">
                             {title}
                         </h3>
-                        <p className="text-xs text-neutral-400 mt-2 opacity-0 group-hover/bento:opacity-100 transition-opacity">
-                            Hover to Reveal
+                        <p className="text-[10px] md:text-xs text-neutral-400 mt-2 opacity-100 md:opacity-0 group-hover/bento:opacity-100 transition-opacity">
+                            {isFlipped ? "Tap to Return" : "Tap / Hover to Reveal"}
                         </p>
                     </div>
                 </div>
@@ -52,7 +57,7 @@ export function FlippableBentoCard({
                 {/* Back Face */}
                 <div
                     className={cn(
-                        "absolute h-full w-full overflow-hidden rounded-2xl border bg-black/80 px-0 py-0 text-slate-200 [backface-visibility:hidden]",
+                        "absolute h-full w-full overflow-y-auto rounded-2xl border bg-black/90 px-0 py-0 text-slate-200 [backface-visibility:hidden] no-scrollbar",
                         "[transform:rotateY(180deg)]"
                     )}
                 >

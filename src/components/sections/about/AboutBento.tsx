@@ -19,23 +19,21 @@ import CSSBoxDemo from "@/components/fancy/demos/CSSBoxDemo";
 
 export function AboutBento() {
     return (
-        <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
-            {items.map((item, i) => (
-                item.hasCustomRender ? (
-                    <div key={i} className={cn("relative w-full h-full min-h-[6rem]", item.className)}>
-                        {item.header}
-                    </div>
-                ) : (
-                    <FlippableBentoCard
-                        key={i}
-                        title={item.title}
-                        description={item.description}
-                        header={item.header}
-                        className={item.className}
-                        icon={item.icon}
-                    />
-                )
+        <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem] gap-8 md:gap-3">
+            {items.slice(0, 3).map((item, i) => (
+                <FlippableBentoCard
+                    key={i}
+                    title={item.title}
+                    description={item.description}
+                    header={item.header}
+                    className={item.className}
+                    icon={item.icon}
+                />
             ))}
+            {/* The 3D Box - Standalone on Desktop, Hidden on Mobile */}
+            <div className="hidden md:flex md:col-span-2 relative h-full w-full items-center justify-center p-8 active:cursor-grabbing cursor-grab">
+                <CSSBoxDemo />
+            </div>
         </BentoGrid>
     );
 }
@@ -82,23 +80,11 @@ const items = [
         title: "Current Focus",
         description: "Exploring the depths of AI and distributed systems. I'm currently deep diving into Agentic AI workflows, Large Language Models, and building tools that empower developers to do more with less.",
         header: (
-            <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-black relative overflow-hidden border border-white/10">
+            <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-black relative overflow-hidden border border-white/10 pointer-events-none">
                 <TechFloatingIcons />
             </div>
         ),
         className: "md:col-span-1",
         icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
-    },
-    {
-        title: "The Network",
-        description: "",
-        header: (
-            <div className="flex w-full h-full items-center justify-center pt-10 z-50 relative pointer-events-auto">
-                <CSSBoxDemo />
-            </div>
-        ),
-        className: "md:col-span-2",
-        icon: <IconSchool className="h-4 w-4 text-neutral-500" />,
-        hasCustomRender: true,
     },
 ];
