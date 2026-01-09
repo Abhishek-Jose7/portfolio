@@ -542,15 +542,19 @@ export function PortfolioContent() {
                                                 {/* Welcome Message */}
                                                 <div className="text-center space-y-2">
                                                     <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                                                        Hi, I'm <DecryptedText
-                                                            text={portfolioData.personal.name}
-                                                            animateOn="hover"
-                                                            speed={80}
-                                                            maxIterations={20}
-                                                            className="cursor-pointer"
-                                                            parentClassName="inline-block align-baseline"
-                                                            style={{ display: 'inline-block', verticalAlign: 'baseline' }}
-                                                        />
+                                                        Hi, I'm {isMobile ? (
+                                                            <span>{portfolioData.personal.name}</span>
+                                                        ) : (
+                                                            <DecryptedText
+                                                                text={portfolioData.personal.name}
+                                                                animateOn="hover"
+                                                                speed={80}
+                                                                maxIterations={20}
+                                                                className="cursor-pointer"
+                                                                parentClassName="inline-block align-baseline"
+                                                                style={{ display: 'inline-block', verticalAlign: 'baseline' }}
+                                                            />
+                                                        )}
                                                     </h1>
                                                     <p className="text-sm md:text-base text-muted-foreground">
                                                         {portfolioData.personal.title}
